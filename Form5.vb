@@ -13,7 +13,7 @@ Public Class Form5
     Dim mdpsmtp As String = ""
     Dim mailadmin As String = ""
     Private Sub Form5_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Text = nom & " configuration service mail"
+        Text = nom & " configuration du service mail"
     End Sub
 
     Private Sub GunaButton1_Click(sender As Object, e As EventArgs) Handles GunaButton1.Click
@@ -34,7 +34,7 @@ Public Class Form5
             Dim MyMailMessage As New MailMessage()
             Dim SMTPServer As New SmtpClient(TextBox1.Text)
             Dim mail = TextBox4.Text
-            Dim message = "Bonjour et félisitation si vous reservez ce mail c'est que tout est correctement configurer." & vbNewLine & vbNewLine & "voici le code de confirmation: " & code
+            Dim message = "Bonjour et félicitation si vous recevez ce mail c'est que tout est correctement configuré." & vbNewLine & vbNewLine & "voici le code de confirmation: " & code
             MyMailMessage.From = New MailAddress(TextBox2.Text)
             MyMailMessage.To.Add(mail)
             MyMailMessage.Subject = ("configuration du service mail pour " & nom)
@@ -44,8 +44,8 @@ Public Class Form5
             SMTPServer.EnableSsl = True
             SMTPServer.Send(MyMailMessage) 'Envoi
             codegener = code
-            MsgBox("Le un mail de teste a êtê envoyer a " & mail, MsgBoxStyle.Information, nom & "/ configuration service mail")
-            Dim msg = MsgBox("Avez vous bien reçu le mail ?", MsgBoxStyle.YesNo, nom & "/ configuration service mail")
+            MsgBox("Le un mail de test à éter envoyé à " & mail, MsgBoxStyle.Information, nom & "/ configuration du service mail")
+            Dim msg = MsgBox("Avez-vous bien reçu le mail ?", MsgBoxStyle.YesNo, nom & "/ configuration du service mail")
             If msg = MsgBoxResult.Yes Then
                 etap = 1
                 etap1()
@@ -126,16 +126,16 @@ Public Class Form5
                 Dim MyMailMessage As New MailMessage()
                 Dim SMTPServer As New SmtpClient(srvsmtp)
                 Dim mail = TextBox1.Text
-                Dim message = "Bonjour administrateur, " & Form4.user1234 & " votre adresse mail a bien êtê enregisterer, pour des réçon de sécurité nous vous envoyons la clés de cryptage." & vbNewLine & vbNewLine & "Clés de cryptage: " & Form4.clés
+                Dim message = "Bonjour administrateur, " & Form4.user1234 & " votre adresse mail a bien été enregistrer, pour des raison de sécurité nous vous envoyons la clé de cryptage." & vbNewLine & vbNewLine & "Clé de cryptage: " & Form4.clés
                 MyMailMessage.From = New MailAddress(usersmtp)
                 MyMailMessage.To.Add(mail)
-                MyMailMessage.Subject = (nom & " clés de cryptage")
+                MyMailMessage.Subject = (nom & " clé de cryptage")
                 MyMailMessage.Body = (message)
                 SMTPServer.Port = (portsmtp) 'Port
                 SMTPServer.Credentials = New System.Net.NetworkCredential(usersmtp, mdpsmtp)
                 SMTPServer.EnableSsl = True
                 SMTPServer.Send(MyMailMessage) 'Envoi
-                MsgBox("La configuration du serveur est terminier", MsgBoxStyle.Information)
+                MsgBox("La configuration du serveur est terminée", MsgBoxStyle.Information)
                 Form4.encours = 0
                 Close()
             End If
@@ -174,6 +174,16 @@ Public Class Form5
     Private Sub TextBox5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox5.KeyPress
         If Not Form3.desnoméro.Contains(e.KeyChar) And Not Asc(e.KeyChar) = 8 Then
             e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Button1.Text = "afficher" Then
+            TextBox3.UseSystemPasswordChar = False
+            Button1.Text = "cacher"
+        Else
+            TextBox3.UseSystemPasswordChar = True
+            Button1.Text = "afficher"
         End If
     End Sub
 End Class

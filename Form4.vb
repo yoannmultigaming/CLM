@@ -12,18 +12,22 @@ Public Class Form4
     Public user1234 As String = ""
     Public encours As Integer = 1
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Button1.Show()
         Text = nom & " / configuration du serveur"
         encours = 1
         etap = 0
-        Label1.Text = "Enterer une clés de chiffrage"
+        Label1.Text = "Entrer une clé de chiffrage"
         GunaButton1.Text = "Suivant"
         TextBox1.MaxLength = 8
+        TextBox1.UseSystemPasswordChar = True
     End Sub
 
     Private Sub GunaButton1_Click(sender As Object, e As EventArgs) Handles GunaButton1.Click
+        TextBox1.Select()
+
         If etap = 0 Then
             If TextBox1.TextLength < 8 Then
-                MsgBox("Il faut 8 carataire", MsgBoxStyle.Critical, Text)
+                MsgBox("Il faut 8 caractères", MsgBoxStyle.Critical, Text)
             Else
                 clés = TextBox1.Text
                 TextBox1.Clear()
@@ -32,16 +36,19 @@ Public Class Form4
             End If
         ElseIf etap = 1 Then
             If TextBox1.TextLength < 8 Then
-                MsgBox("Il faut 8 carataire", MsgBoxStyle.Critical, Text)
+                MsgBox("Il faut 8 caractères", MsgBoxStyle.Critical, Text)
             Else
                 If TextBox1.Text = clés Then
+                    Button1.Text = "afficher"
+                    TextBox1.UseSystemPasswordChar = False
+                    Button1.Hide()
                     etap3()
                 Else
-                    MsgBox("Les clés de chiffrage correspond pas", MsgBoxStyle.Critical, Text)
+                    MsgBox("Les clés de chiffrage correspondent pas", MsgBoxStyle.Critical, Text)
                     TextBox1.Clear()
                     TextBox1.MaxLength = 8
                     etap = 0
-                    Label1.Text = "Enterer une clés de chiffrage"
+                    Label1.Text = "Entrer une clé de chiffrage"
                     GunaButton1.Text = "Suivant"
                 End If
             End If
@@ -55,19 +62,21 @@ Public Class Form4
             etap5()
         ElseIf etap = 4 Then
             If TextBox1.Text = mdp Then
+                TextBox1.UseSystemPasswordChar = False
+                Button1.Hide()
                 etap6()
             Else
-                MsgBox("Les mots de passe ne corresponds pas", MsgBoxStyle.Critical, Text)
+                MsgBox("Les mots de passe ne correspondent pas", MsgBoxStyle.Critical, Text)
                 TextBox1.Clear()
                 etap = 3
-                Label1.Text = "Enterer un mots de passe"
+                Label1.Text = "Entrer un mot de passe"
                 GunaButton1.Text = "Suivant"
                 TextBox1.MaxLength = 999999999
             End If
         End If
     End Sub
     Sub etap2()
-        Label1.Text = "Confirmer la clés de chiffrage"
+        Label1.Text = "Confirmer la clé de chiffrage"
         GunaButton1.Text = "Confirmer"
     End Sub
     Sub etap3()
@@ -85,7 +94,7 @@ Public Class Form4
             sw1.Close()
             etap = 2
             TextBox1.Clear()
-            Label1.Text = "Enterer un nom de compte"
+            Label1.Text = "Entrer un nom de compte"
             GunaButton1.Text = "Suivant"
             TextBox1.MaxLength = 999999999
         Catch ex As Exception
@@ -93,14 +102,17 @@ Public Class Form4
         End Try
     End Sub
     Sub etap4()
+        Button1.Text = "afficher"
+        Button1.Show()
+        TextBox1.UseSystemPasswordChar = True
         etap = 3
-        Label1.Text = "Enterer un mots de passe"
+        Label1.Text = "Entrer un mot de passe"
         GunaButton1.Text = "Suivant"
         TextBox1.MaxLength = 999999999
     End Sub
     Sub etap5()
         etap = 4
-        Label1.Text = "Confimer le mots de passe"
+        Label1.Text = "confirmer le mot de passe"
         GunaButton1.Text = "Confirmer"
         TextBox1.MaxLength = 999999999
     End Sub
@@ -189,8 +201,8 @@ Public Class Form4
             sw5.WriteLine(passftpcrypte)
             sw5.Close()
 
-            MsgBox("L'administrateur: " & user1234 & " a bien êtê créer", MsgBoxStyle.Information, Text)
-            Dim msg = MsgBox("voulez vous configurer le service mail ?", MsgBoxStyle.YesNo, Text)
+            MsgBox("L'administrateur: " & user1234 & " a bien été créer", MsgBoxStyle.Information, Text)
+            Dim msg = MsgBox("Voulez-vous configurer le service mail ?", MsgBoxStyle.YesNo, Text)
             If msg = MsgBoxResult.Yes Then
                 Form5.ShowDialog()
                 encours = 0
@@ -219,6 +231,16 @@ Public Class Form4
     Private Sub Form4_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If encours = 1 Then
             e.Cancel = True
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Button1.Text = "afficher" Then
+            TextBox1.UseSystemPasswordChar = False
+            Button1.Text = "cacher"
+        Else
+            TextBox1.UseSystemPasswordChar = True
+            Button1.Text = "afficher"
         End If
     End Sub
 End Class

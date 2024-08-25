@@ -26,6 +26,7 @@ Partial Class Form4
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -42,7 +43,7 @@ Partial Class Form4
         Me.TextBox1.Location = New System.Drawing.Point(12, 25)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(252, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.TextBox1.TabIndex = 0
         '
         'GunaButton1
         '
@@ -63,19 +64,32 @@ Partial Class Form4
         Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton1.OnHoverImage = Nothing
         Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton1.Size = New System.Drawing.Size(252, 42)
-        Me.GunaButton1.TabIndex = 2
+        Me.GunaButton1.Size = New System.Drawing.Size(319, 42)
+        Me.GunaButton1.TabIndex = 1
         Me.GunaButton1.Text = "GunaButton1"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(270, 25)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(69, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "afficher"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Form4
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(282, 102)
+        Me.ClientSize = New System.Drawing.Size(343, 102)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GunaButton1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(359, 141)
+        Me.MinimumSize = New System.Drawing.Size(359, 141)
         Me.Name = "Form4"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
@@ -86,4 +100,5 @@ Partial Class Form4
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents GunaButton1 As Guna.UI.WinForms.GunaButton
+    Friend WithEvents Button1 As Button
 End Class

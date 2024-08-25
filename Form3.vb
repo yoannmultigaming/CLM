@@ -10,7 +10,7 @@ Public Class Form3
     Public ipsite As String = ""
     Public desnoméro() As Char = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MsgBox("Avant de commançer assurer-vous d'avoir un serveur web et un serveur FTP qui pointe vers le même serveur web", MsgBoxStyle.Exclamation, "CLM / Inisialiser un serveur")
+        MsgBox("Avant de commencer assurez-vous d'avoir un serveur web et un serveur FTP qui pointe vers le même serveur web", MsgBoxStyle.Exclamation, "CLM / Inisialiser un serveur")
         Text = nom & " / Inisialiser un serveur"
         etap1()
     End Sub
@@ -34,6 +34,7 @@ Public Class Form3
                 idftp = TextBox2.Text
                 passftp = TextBox3.Text
                 etap = 1
+                Button1.Hide()
                 etap2()
             Catch ex As Exception
                 MsgBox(ex.ToString)
@@ -55,8 +56,8 @@ Public Class Form3
                 ftpStream8.Close()
                 response8.Close()
 
-                MsgBox("La connection au serveur FTP et au serveur web est parfait", MsgBoxStyle.Information, nom & " / Inisialiser un serveur")
-                Dim msg = MsgBox("voulez vous vraiment inisialiser ce serveur ?", MsgBoxStyle.YesNo, nom & " / Inisialiser un serveur")
+                MsgBox("La connexion au serveur FTP et au serveur web est parfaite", MsgBoxStyle.Information, nom & " / Inisialiser un serveur")
+                Dim msg = MsgBox("Voulez-vous vraiment initialiser ce serveur ?", MsgBoxStyle.YesNo, nom & " / Inisialiser un serveur")
                 If msg = MsgBoxResult.Yes Then
                     etap3()
                 Else
@@ -194,7 +195,7 @@ Public Class Form3
             My.Computer.Network.UploadFile(dosrepertoire & "index.html", ipserveur & "/CLM/config/index.html")
             My.Computer.Network.UploadFile(dosrepertoire & "index.html", ipserveur & "/CLM/index.html")
             File.Delete(dosrepertoire & "index.html")
-            MsgBox("Inisialisation terminer", MsgBoxStyle.Information, nom & " / Inisialiser un serveur")
+            MsgBox("L'initialisation est terminée", MsgBoxStyle.Information, nom & " / Inisialiser un serveur")
             Form4.ShowDialog()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -204,6 +205,16 @@ Public Class Form3
     Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress
         If Not desnoméro.Contains(e.KeyChar) And Not Asc(e.KeyChar) = 8 Then
             e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Button1.Text = "afficher" Then
+            TextBox3.UseSystemPasswordChar = False
+            Button1.Text = "cacher"
+        Else
+            TextBox3.UseSystemPasswordChar = True
+            Button1.Text = "afficher"
         End If
     End Sub
 End Class

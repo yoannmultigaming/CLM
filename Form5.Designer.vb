@@ -34,6 +34,7 @@ Partial Class Form5
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -92,7 +93,7 @@ Partial Class Form5
         Me.GunaButton1.OnHoverImage = Nothing
         Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
         Me.GunaButton1.Size = New System.Drawing.Size(407, 30)
-        Me.GunaButton1.TabIndex = 1
+        Me.GunaButton1.TabIndex = 5
         Me.GunaButton1.Text = "Suivant"
         '
         'TextBox1
@@ -100,7 +101,7 @@ Partial Class Form5
         Me.TextBox1.Location = New System.Drawing.Point(123, 6)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(227, 20)
-        Me.TextBox1.TabIndex = 2
+        Me.TextBox1.TabIndex = 0
         '
         'TextBox2
         '
@@ -114,14 +115,15 @@ Partial Class Form5
         Me.TextBox3.Location = New System.Drawing.Point(123, 61)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(227, 20)
-        Me.TextBox3.TabIndex = 2
+        Me.TextBox3.TabIndex = 3
+        Me.TextBox3.UseSystemPasswordChar = True
         '
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(123, 87)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(227, 20)
-        Me.TextBox4.TabIndex = 2
+        Me.TextBox4.TabIndex = 4
         '
         'Label5
         '
@@ -137,14 +139,24 @@ Partial Class Form5
         Me.TextBox5.Location = New System.Drawing.Point(381, 6)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(45, 20)
-        Me.TextBox5.TabIndex = 3
+        Me.TextBox5.TabIndex = 1
         Me.TextBox5.Text = "587"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(356, 62)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(69, 23)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "afficher"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Form5
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(431, 147)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox5)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.TextBox3)
@@ -157,6 +169,9 @@ Partial Class Form5
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(447, 186)
+        Me.MinimumSize = New System.Drawing.Size(447, 186)
         Me.Name = "Form5"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form5"
@@ -176,4 +191,5 @@ Partial Class Form5
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Button1 As Button
 End Class

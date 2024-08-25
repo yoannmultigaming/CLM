@@ -90,7 +90,6 @@ Partial Class Form3
         '
         Me.TextBox3.Location = New System.Drawing.Point(165, 88)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox3.Size = New System.Drawing.Size(172, 20)
         Me.TextBox3.TabIndex = 3
         Me.TextBox3.UseSystemPasswordChar = True
