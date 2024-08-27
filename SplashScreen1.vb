@@ -66,4 +66,8 @@ Public NotInheritable Class SplashScreen1
     Private Sub ApplicationTitle_Click(sender As Object, e As EventArgs) Handles ApplicationTitle.Click
 
     End Sub
+
+    Private Sub MainLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles MainLayoutPanel.Paint
+
+    End Sub
 End Class
