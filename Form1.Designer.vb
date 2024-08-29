@@ -44,7 +44,6 @@ Partial Class Form1
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.PictureBox22 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -61,10 +60,10 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GunaButton5 = New Guna.UI.WinForms.GunaButton()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -154,7 +153,7 @@ Partial Class Form1
         Me.ChromeTabcontrol1.ShowOuterBorders = False
         Me.ChromeTabcontrol1.Size = New System.Drawing.Size(832, 452)
         Me.ChromeTabcontrol1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
-        Me.ChromeTabcontrol1.SquareColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(87, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.ChromeTabcontrol1.SquareColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ChromeTabcontrol1.TabIndex = 0
         '
         'TabPage1
@@ -362,7 +361,6 @@ Partial Class Form1
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.White
-        Me.TabPage2.Controls.Add(Me.ListBox1)
         Me.TabPage2.Controls.Add(Me.Label3)
         Me.TabPage2.Controls.Add(Me.PictureBox22)
         Me.TabPage2.Controls.Add(Me.Label2)
@@ -379,20 +377,13 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.Button3)
         Me.TabPage2.Controls.Add(Me.Button4)
         Me.TabPage2.Controls.Add(Me.TextBox4)
+        Me.TabPage2.Controls.Add(Me.ListBox1)
         Me.TabPage2.Location = New System.Drawing.Point(119, 4)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(709, 444)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Logiciel installer"
-        '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(436, 84)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(120, 95)
-        Me.ListBox1.TabIndex = 25
         '
         'Label3
         '
@@ -571,12 +562,19 @@ Partial Class Form1
         Me.TextBox4.TabIndex = 8
         Me.TextBox4.Text = "Taper pour rechercher"
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(289, 10)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(377, 4)
+        Me.ListBox1.TabIndex = 25
+        '
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.White
         Me.TabPage3.Controls.Add(Me.GunaButton5)
         Me.TabPage3.Controls.Add(Me.Label7)
-        Me.TabPage3.Controls.Add(Me.TextBox5)
         Me.TabPage3.Controls.Add(Me.Button5)
         Me.TabPage3.Controls.Add(Me.Button6)
         Me.TabPage3.Controls.Add(Me.GroupBox4)
@@ -618,21 +616,11 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(119, 423)
+        Me.Label7.Location = New System.Drawing.Point(103, 423)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(18, 13)
+        Me.Label7.Size = New System.Drawing.Size(24, 13)
         Me.Label7.TabIndex = 26
-        Me.Label7.Text = "/1"
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Location = New System.Drawing.Point(87, 423)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(26, 13)
-        Me.TextBox5.TabIndex = 25
-        Me.TextBox5.Text = "1"
+        Me.Label7.Text = "1/1"
         '
         'Button5
         '
@@ -1071,7 +1059,6 @@ Partial Class Form1
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox5 As TextBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents GroupBox2 As GroupBox

@@ -98,8 +98,8 @@ Partial Class Form3
         '
         Me.GunaButton1.AnimationHoverSpeed = 0.07!
         Me.GunaButton1.AnimationSpeed = 0.03!
-        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton1.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -108,11 +108,11 @@ Partial Class Form3
         Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton1.Location = New System.Drawing.Point(12, 114)
         Me.GunaButton1.Name = "GunaButton1"
-        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton1.OnHoverImage = Nothing
-        Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.Size = New System.Drawing.Size(423, 42)
         Me.GunaButton1.TabIndex = 4
         Me.GunaButton1.Text = "Suivant"

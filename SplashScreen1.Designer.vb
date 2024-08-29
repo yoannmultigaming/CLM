@@ -99,7 +99,7 @@ Partial Class SplashScreen1
         '
         'MainLayoutPanel
         '
-        Me.MainLayoutPanel.BackColor = System.Drawing.Color.LightSkyBlue
+        Me.MainLayoutPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.MainLayoutPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MainLayoutPanel.ColumnCount = 2
         Me.MainLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 243.0!))

@@ -102,7 +102,38 @@ Public Class Form6
         My.Computer.Network.DownloadFile(CLMipsite.ToString & CLMlient.ToString & "/version/" & ComboBox1.SelectedItem.ToString & "/nom.txt", dosprogramefile.ToString & CLMpronom.ToString & "/nom.txt")
 
         Dim lines2() As String = File.ReadAllLines(dosinstall & "/page.txt")
+
+
         Dim lines3() As String = File.ReadAllLines(dosinstall & "/page" & lines2(0) & "/logi.txt")
+
+        Dim i As Integer = 1
+
+        While i <= lines2(0)
+            Dim lines4() As String = File.ReadAllLines(dosinstall & "/page" & i & "/logi.txt")
+            If lines4(0) = 10 Then
+                i = i + 1
+            Else
+                Directory.CreateDirectory(dosinstall & "/page" & i & "/" & CLMpronom & "/")
+                PictureBox1.Image.Save(dosinstall & "/page" & i & "/" & CLMpronom & "/image.jpg")
+                Dim sw23 As New StreamWriter(dosinstall & "/page" & i & "/" & CLMpronom & "/nom.txt")
+                sw23.WriteLine(CLMpronom)
+                sw23.Close()
+
+                ListBox1.Items.Clear()
+
+                For Each fichier As String In IO.Directory.GetDirectories(dosinstall & "/page" & i & "/")
+                    Dim info As New IO.FileInfo(fichier)
+                    ListBox1.Items.Add(info.Name)
+                Next
+
+                Dim sw2 As New StreamWriter(dosinstall & "/page" & i & "/logi.txt")
+                sw2.WriteLine(ListBox1.Items.Count)
+                sw2.Close()
+
+                Form1.vérifiinstall()
+                Exit While
+            End If
+        End While
 
         If lines3(0) = 10 Then
             Directory.CreateDirectory(dosinstall & "/page" & lines2(0).ToString + 1)
@@ -126,25 +157,6 @@ Public Class Form6
             Dim sw22 As New StreamWriter(dosinstall & "/page" & lines2bis(0) & "/logi.txt")
             sw22.WriteLine(ListBox1.Items.Count)
             sw22.Close()
-
-            Form1.vérifiinstall()
-        Else
-            Directory.CreateDirectory(dosinstall & "/page" & lines2(0) & "/" & CLMpronom & "/")
-            PictureBox1.Image.Save(dosinstall & "/page" & lines2(0) & "/" & CLMpronom & "/image.jpg")
-            Dim sw23 As New StreamWriter(dosinstall & "/page" & lines2(0) & "/" & CLMpronom & "/nom.txt")
-            sw23.WriteLine(CLMpronom)
-            sw23.Close()
-
-            ListBox1.Items.Clear()
-
-            For Each fichier As String In IO.Directory.GetDirectories(dosinstall & "/page" & lines2(0) & "/")
-                Dim info As New IO.FileInfo(fichier)
-                ListBox1.Items.Add(info.Name)
-            Next
-
-            Dim sw2 As New StreamWriter(dosinstall & "/page" & lines2(0) & "/logi.txt")
-            sw2.WriteLine(ListBox1.Items.Count)
-            sw2.Close()
 
             Form1.vérifiinstall()
         End If

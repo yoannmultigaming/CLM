@@ -57,7 +57,7 @@ Partial Class Form6
         '
         Me.GunaButton1.AnimationHoverSpeed = 0.07!
         Me.GunaButton1.AnimationSpeed = 0.03!
-        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.BorderColor = System.Drawing.Color.Black
         Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
@@ -67,11 +67,11 @@ Partial Class Form6
         Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton1.Location = New System.Drawing.Point(12, 197)
         Me.GunaButton1.Name = "GunaButton1"
-        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton1.OnHoverImage = Nothing
-        Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.Size = New System.Drawing.Size(413, 42)
         Me.GunaButton1.TabIndex = 2
         Me.GunaButton1.Text = "GunaButton1"
@@ -118,7 +118,7 @@ Partial Class Form6
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(192, 28)
+        Me.ListBox1.Location = New System.Drawing.Point(192, 44)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(192, 95)
         Me.ListBox1.TabIndex = 6
@@ -128,7 +128,6 @@ Partial Class Form6
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(437, 251)
-        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Label2)
@@ -136,6 +135,7 @@ Partial Class Form6
         Me.Controls.Add(Me.GunaButton1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.ListBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(453, 290)

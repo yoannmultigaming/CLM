@@ -16,7 +16,27 @@ Public Class Form8
         If msg = MsgBoxResult.Yes Then
             My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & CLMpronom2 & "/", FileIO.DeleteDirectoryOption.DeleteAllContents)
             My.Computer.FileSystem.DeleteDirectory(dosinstall & "/page" & Form1.pagesacctuel2 & "/" & CLMpronom2 & "/", FileIO.DeleteDirectoryOption.DeleteAllContents)
-            MsgBox(CLMpronom2 & " a bien été désinstaller")
+            MsgBox(CLMpronom2 & " a bien été désinstaller", MsgBoxStyle.Information, nom)
+            Dim lines1() As String = File.ReadAllLines(dosinstall & "/page" & Form1.pagesacctuel2 & "/logi.txt")
+            If lines1(0) - 1 = 0 Then
+                Dim lines2() As String = File.ReadAllLines(dosinstall & "/page.txt")
+                If lines2(0) - 1 = 0 Then
+                    Dim sw112 As New StreamWriter(dosinstall & "/page1/logi.txt")
+                    sw112.WriteLine(0)
+                    sw112.Close()
+                    Form1.PictureBox12.Image.Dispose()
+                    Form1.PictureBox12.Hide()
+                    My.Computer.FileSystem.DeleteDirectory(dosinstall & "/page1/image/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+                Else
+                    Dim sw11 As New StreamWriter(dosinstall & "/page.txt")
+                    sw11.WriteLine(lines2(0) - 1)
+                    sw11.Close()
+                    File.Delete(dosinstall & "/page" & Form1.pagesacctuel2 & "/logi.txt")
+                    Form1.PictureBox12.Image.Dispose()
+                    My.Computer.FileSystem.DeleteDirectory(dosinstall & "/page" & Form1.pagesacctuel2 & "/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+                End If
+            End If
+            Form1.pagesacctuel2 = 1
             Form1.vérifiinstall()
             Close()
         Else

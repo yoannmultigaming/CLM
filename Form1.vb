@@ -3,7 +3,6 @@ Imports System.IO
 Imports System.Net
 Imports System.Security.Cryptography
 Imports System.Text
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class Form1
     Dim pagesacctuel As Integer = 1
@@ -11,6 +10,7 @@ Public Class Form1
     Dim nbimage As Integer = 0
     Dim nbmiage2 As Integer = 0
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TabPage3.Text = "Mise a jour (4)"
         SplashScreen1.Close()
         Dim lines1() As String = File.ReadAllLines(connecter)
         If lines1(0) = 1 Then
@@ -836,7 +836,9 @@ Public Class Form1
             Button4.Enabled = False
             Button3.Enabled = True
         End If
+
         If lines2(0) = 0 Then
+
             Label3.Show()
         Else
             Label3.Hide()
@@ -912,6 +914,8 @@ Public Class Form1
         Else
 
         End If
+
+
 
         If Directory.Exists(dosinstall & "/page" & pagesacctuel2 & "/image/") = True Then
             For Each fichier As String In IO.Directory.GetFiles(dosinstall & "/page" & pagesacctuel2 & "/image/")
@@ -2751,6 +2755,11 @@ Public Class Form1
                 PictureBox10.Show()
                 PictureBox11.Show()
             End If
+        End If
+    End Sub
+    Private Sub ChromeTabcontrol1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ChromeTabcontrol1.SelectedIndexChanged
+        If ChromeTabcontrol1.SelectedIndex = 2 Then
+            Text = nom & " : mise a jour (4)"
         End If
     End Sub
 End Class
