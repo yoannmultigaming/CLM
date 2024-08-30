@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Net
-Imports System.Windows
 
 Public Class Form3
     Public etap As Integer = 0

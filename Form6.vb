@@ -96,6 +96,9 @@ Public Class Form6
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         File.Delete(dosprogramefile.ToString & "\programe.zip")
+        Dim sw11 As New StreamWriter(dosprogramefile.ToString & CLMpronom.ToString & "/updatedl.txt")
+        sw11.WriteLine(CLMipsite.ToString & CLMlient.ToString)
+        sw11.Close()
         Dim sw1 As New StreamWriter(dosprogramefile.ToString & CLMpronom.ToString & "/version.txt")
         sw1.WriteLine(ComboBox1.SelectedItem)
         sw1.Close()

@@ -62,6 +62,8 @@ Partial Class Form1
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.GunaButton5 = New Guna.UI.WinForms.GunaButton()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -86,10 +88,12 @@ Partial Class Form1
         Me.PictureBox24 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.PictureBox23 = New System.Windows.Forms.PictureBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.ChromeTabcontrol1.SuspendLayout()
@@ -573,6 +577,8 @@ Partial Class Form1
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.White
+        Me.TabPage3.Controls.Add(Me.Button7)
+        Me.TabPage3.Controls.Add(Me.Label17)
         Me.TabPage3.Controls.Add(Me.GunaButton5)
         Me.TabPage3.Controls.Add(Me.Label7)
         Me.TabPage3.Controls.Add(Me.Button5)
@@ -581,6 +587,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.GroupBox3)
         Me.TabPage3.Controls.Add(Me.GroupBox2)
         Me.TabPage3.Controls.Add(Me.GroupBox1)
+        Me.TabPage3.Controls.Add(Me.ListBox2)
         Me.TabPage3.Location = New System.Drawing.Point(119, 4)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -588,14 +595,33 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Mise a jour"
         '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(263, 415)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(75, 23)
+        Me.Button7.TabIndex = 28
+        Me.Button7.Text = "Button7"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(195, 213)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(358, 18)
+        Me.Label17.TabIndex = 27
+        Me.Label17.Text = "Aucun mise a jour est disponible sur cette machine"
+        '
         'GunaButton5
         '
         Me.GunaButton5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GunaButton5.AnimationHoverSpeed = 0.07!
         Me.GunaButton5.AnimationSpeed = 0.03!
-        Me.GunaButton5.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton5.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton5.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton5.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton5.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton5.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -604,14 +630,14 @@ Partial Class Form1
         Me.GunaButton5.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton5.Location = New System.Drawing.Point(6, 6)
         Me.GunaButton5.Name = "GunaButton5"
-        Me.GunaButton5.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton5.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton5.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton5.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton5.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton5.OnHoverImage = Nothing
-        Me.GunaButton5.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton5.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton5.Size = New System.Drawing.Size(695, 31)
         Me.GunaButton5.TabIndex = 2
-        Me.GunaButton5.Text = "mètre à jour les 4 logiciel"
+        Me.GunaButton5.Text = "Mètre à jour les 4 logiciel"
         '
         'Label7
         '
@@ -635,6 +661,7 @@ Partial Class Form1
         'Button6
         '
         Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button6.Enabled = False
         Me.Button6.Location = New System.Drawing.Point(5, 416)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(75, 23)
@@ -662,8 +689,8 @@ Partial Class Form1
         '
         Me.GunaButton4.AnimationHoverSpeed = 0.07!
         Me.GunaButton4.AnimationSpeed = 0.03!
-        Me.GunaButton4.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton4.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton4.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton4.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton4.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton4.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -672,11 +699,11 @@ Partial Class Form1
         Me.GunaButton4.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton4.Location = New System.Drawing.Point(516, 34)
         Me.GunaButton4.Name = "GunaButton4"
-        Me.GunaButton4.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton4.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton4.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton4.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton4.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton4.OnHoverImage = Nothing
-        Me.GunaButton4.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton4.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton4.Size = New System.Drawing.Size(176, 31)
         Me.GunaButton4.TabIndex = 2
         Me.GunaButton4.Text = "mètre à jour maintenant"
@@ -713,6 +740,7 @@ Partial Class Form1
         Me.PictureBox26.Location = New System.Drawing.Point(6, 14)
         Me.PictureBox26.Name = "PictureBox26"
         Me.PictureBox26.Size = New System.Drawing.Size(54, 66)
+        Me.PictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox26.TabIndex = 0
         Me.PictureBox26.TabStop = False
         '
@@ -737,8 +765,8 @@ Partial Class Form1
         '
         Me.GunaButton3.AnimationHoverSpeed = 0.07!
         Me.GunaButton3.AnimationSpeed = 0.03!
-        Me.GunaButton3.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton3.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton3.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton3.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -747,11 +775,11 @@ Partial Class Form1
         Me.GunaButton3.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton3.Location = New System.Drawing.Point(516, 34)
         Me.GunaButton3.Name = "GunaButton3"
-        Me.GunaButton3.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton3.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton3.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton3.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton3.OnHoverImage = Nothing
-        Me.GunaButton3.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton3.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton3.Size = New System.Drawing.Size(176, 31)
         Me.GunaButton3.TabIndex = 2
         Me.GunaButton3.Text = "mètre à jour maintenant"
@@ -788,6 +816,7 @@ Partial Class Form1
         Me.PictureBox25.Location = New System.Drawing.Point(6, 14)
         Me.PictureBox25.Name = "PictureBox25"
         Me.PictureBox25.Size = New System.Drawing.Size(54, 66)
+        Me.PictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox25.TabIndex = 0
         Me.PictureBox25.TabStop = False
         '
@@ -812,8 +841,8 @@ Partial Class Form1
         '
         Me.GunaButton2.AnimationHoverSpeed = 0.07!
         Me.GunaButton2.AnimationSpeed = 0.03!
-        Me.GunaButton2.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton2.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton2.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton2.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton2.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -822,11 +851,11 @@ Partial Class Form1
         Me.GunaButton2.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton2.Location = New System.Drawing.Point(516, 34)
         Me.GunaButton2.Name = "GunaButton2"
-        Me.GunaButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton2.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton2.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton2.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton2.OnHoverImage = Nothing
-        Me.GunaButton2.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton2.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton2.Size = New System.Drawing.Size(176, 31)
         Me.GunaButton2.TabIndex = 2
         Me.GunaButton2.Text = "mètre à jour maintenant"
@@ -863,6 +892,7 @@ Partial Class Form1
         Me.PictureBox24.Location = New System.Drawing.Point(6, 14)
         Me.PictureBox24.Name = "PictureBox24"
         Me.PictureBox24.Size = New System.Drawing.Size(54, 66)
+        Me.PictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox24.TabIndex = 0
         Me.PictureBox24.TabStop = False
         '
@@ -872,13 +902,14 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.GunaButton1)
+        Me.GroupBox1.Controls.Add(Me.ListBox3)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.PictureBox23)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 38)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 43)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(698, 86)
+        Me.GroupBox1.Size = New System.Drawing.Size(698, 81)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
@@ -887,8 +918,8 @@ Partial Class Form1
         '
         Me.GunaButton1.AnimationHoverSpeed = 0.07!
         Me.GunaButton1.AnimationSpeed = 0.03!
-        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton1.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
@@ -897,19 +928,27 @@ Partial Class Form1
         Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaButton1.Location = New System.Drawing.Point(516, 34)
         Me.GunaButton1.Name = "GunaButton1"
-        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(151, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton1.OnHoverImage = Nothing
-        Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaButton1.Size = New System.Drawing.Size(176, 31)
         Me.GunaButton1.TabIndex = 2
         Me.GunaButton1.Text = "mètre à jour maintenant"
         '
+        'ListBox3
+        '
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.Location = New System.Drawing.Point(547, -30)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(145, 17)
+        Me.ListBox3.TabIndex = 1
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(66, 67)
+        Me.Label6.Location = New System.Drawing.Point(66, 63)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(89, 13)
         Me.Label6.TabIndex = 1
@@ -918,7 +957,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(66, 43)
+        Me.Label5.Location = New System.Drawing.Point(66, 39)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(83, 13)
         Me.Label5.TabIndex = 1
@@ -935,11 +974,20 @@ Partial Class Form1
         '
         'PictureBox23
         '
-        Me.PictureBox23.Location = New System.Drawing.Point(6, 14)
+        Me.PictureBox23.Location = New System.Drawing.Point(6, 16)
         Me.PictureBox23.Name = "PictureBox23"
-        Me.PictureBox23.Size = New System.Drawing.Size(54, 66)
+        Me.PictureBox23.Size = New System.Drawing.Size(54, 61)
+        Me.PictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox23.TabIndex = 0
         Me.PictureBox23.TabStop = False
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(236, 14)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(120, 17)
+        Me.ListBox2.TabIndex = 1
         '
         'TabPage4
         '
@@ -1073,7 +1121,6 @@ Partial Class Form1
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents PictureBox23 As PictureBox
-    Friend WithEvents GunaButton5 As Guna.UI.WinForms.GunaButton
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GunaButton4 As Guna.UI.WinForms.GunaButton
     Friend WithEvents Label14 As Label
@@ -1087,4 +1134,9 @@ Partial Class Form1
     Friend WithEvents Label13 As Label
     Friend WithEvents PictureBox25 As PictureBox
     Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents ListBox3 As ListBox
+    Public WithEvents GunaButton5 As Guna.UI.WinForms.GunaButton
+    Friend WithEvents Button7 As Button
 End Class

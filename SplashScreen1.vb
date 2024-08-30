@@ -42,6 +42,20 @@ Public NotInheritable Class SplashScreen1
             sw2.Close()
         End If
 
+        If Directory.Exists(dosupdate) = False Then
+            Directory.CreateDirectory(dosupdate)
+            Directory.CreateDirectory(dosupdate & "\page1\")
+            Dim sw1 As New StreamWriter(dosupdate & "\page.txt")
+            sw1.WriteLine(1)
+            sw1.Close()
+            Dim sw2 As New StreamWriter(dosupdate & "\page1\logi.txt")
+            sw2.WriteLine(0)
+            sw2.Close()
+            Dim sw3 As New StreamWriter(dosupdate & "\update.txt")
+            sw3.WriteLine(0)
+            sw3.Close()
+        End If
+
         If Directory.Exists(dosinstall) = False Then
             Directory.CreateDirectory(dosconnextion)
             Dim sw1 As New StreamWriter(connecter)

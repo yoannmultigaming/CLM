@@ -2,6 +2,7 @@
     Public dosrepertoire As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\CLM\"
     Public dosprogramefile As String = dosrepertoire & "\Programmes\"
     Public dosinstall As String = dosrepertoire & "\install\"
+    Public dosupdate As String = dosrepertoire & "\update\"
     Public dostemp As String = dosrepertoire & "\tmp\"
     Public dosthéme As String = dosrepertoire & "\théme\"
     Public théme As String = dosthéme & "\théme.txt"

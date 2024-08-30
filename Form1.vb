@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Diagnostics.Eventing.Reader
 Imports System.IO
 Imports System.Net
 Imports System.Security.Cryptography
@@ -7,8 +8,11 @@ Imports System.Text
 Public Class Form1
     Dim pagesacctuel As Integer = 1
     Public pagesacctuel2 As Integer = 1
+    Public pagesacctuel3 As Integer = 1
     Dim nbimage As Integer = 0
     Dim nbmiage2 As Integer = 0
+    Dim nbmiage3 As Integer = 0
+    Dim nmlogup As Integer = 0
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabPage3.Text = "Mise a jour (4)"
         SplashScreen1.Close()
@@ -86,8 +90,6 @@ Public Class Form1
 
             ComboBox1.Items.Add(str)
 
-
-
             str = sr.ReadLine()
 
         End While
@@ -95,6 +97,7 @@ Public Class Form1
         ComboBox1.Items.Add("tout")
         ComboBox1.Items.Remove("index.html")
         ComboBox1.SelectedItem = "tout"
+        NotifyIcon1.Text = nom
         vérifiinstall()
     End Sub
 
@@ -172,8 +175,6 @@ Public Class Form1
                 Dim info As New IO.FileInfo(fichier)
                 File.Delete(fichier)
             Next
-
-
 
             Dim maj1 As New WebClient
             Dim vri1 As String = maj1.DownloadString(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page.txt")
@@ -838,8 +839,8 @@ Public Class Form1
         End If
 
         If lines2(0) = 0 Then
-
             Label3.Show()
+            updatelogi()
         Else
             Label3.Hide()
             vérifiinstall2()
@@ -915,8 +916,6 @@ Public Class Form1
 
         End If
 
-
-
         If Directory.Exists(dosinstall & "/page" & pagesacctuel2 & "/image/") = True Then
             For Each fichier As String In IO.Directory.GetFiles(dosinstall & "/page" & pagesacctuel2 & "/image/")
                 Dim info As New IO.FileInfo(fichier)
@@ -944,6 +943,7 @@ Public Class Form1
             sw1.Close()
             i = i + 1
         End While
+
         If ListBox1.Items.Count = 1 Then
             PictureBox12.Image = Image.FromFile(dosinstall & "/page" & pagesacctuel2 & "/image/image1.jpg")
             PictureBox12.Show()
@@ -1121,6 +1121,8 @@ Public Class Form1
             PictureBox20.Hide()
         End If
         nbmiage2 = ListBox1.Items.Count
+
+        updatelogi()
     End Sub
 
     Private Sub PictureBox12_Click(sender As Object, e As EventArgs) Handles PictureBox12.Click
@@ -2758,8 +2760,404 @@ Public Class Form1
         End If
     End Sub
     Private Sub ChromeTabcontrol1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ChromeTabcontrol1.SelectedIndexChanged
-        If ChromeTabcontrol1.SelectedIndex = 2 Then
-            Text = nom & " : mise a jour (4)"
+        If ChromeTabcontrol1.SelectedIndex = 0 Then
+            Text = nom & ": " & ComboBox1.SelectedItem & " " & Label1.Text
+        ElseIf ChromeTabcontrol1.SelectedIndex = 1 Then
+            Text = nom & ": " & TabPage2.Text & " " & Label2.Text
+        ElseIf ChromeTabcontrol1.SelectedIndex = 2 Then
+            Text = nom & ": " & TabPage3.Text
+        ElseIf ChromeTabcontrol1.SelectedIndex = 3 Then
+            Text = nom & ": " & TabPage4.Text
+        ElseIf ChromeTabcontrol1.SelectedIndex = 4 Then
+            Text = nom & ": " & TabPage5.Text
         End If
+    End Sub
+    Sub updatelogi()
+        pagesacctuel3 = 1
+        If nbmiage3 = 1 Then
+            PictureBox23.Image.Dispose()
+        ElseIf nbmiage3 = 2 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+        ElseIf nbmiage3 = 3 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+            PictureBox25.Image.Dispose()
+        ElseIf nbmiage3 = 4 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+            PictureBox25.Image.Dispose()
+            PictureBox26.Image.Dispose()
+        Else
+
+        End If
+
+        If Directory.Exists(dosupdate) = True Then
+            My.Computer.FileSystem.DeleteDirectory(dosupdate, FileIO.DeleteDirectoryOption.DeleteAllContents)
+            Directory.CreateDirectory(dosupdate)
+            Directory.CreateDirectory(dosupdate & "\page1\")
+            Dim sw1 As New StreamWriter(dosupdate & "\page.txt")
+            sw1.WriteLine(1)
+            sw1.Close()
+            Dim sw2 As New StreamWriter(dosupdate & "\page1\logi.txt")
+            sw2.WriteLine(0)
+            sw2.Close()
+            Dim sw3 As New StreamWriter(dosupdate & "\update.txt")
+            sw3.WriteLine(0)
+            sw3.Close()
+        End If
+
+        ListBox2.Items.Clear()
+
+        For Each fichier As String In IO.Directory.GetDirectories(dosprogramefile)
+            Dim info As New IO.FileInfo(fichier)
+            ListBox2.Items.Add(fichier)
+        Next
+
+        If ListBox2.Items.Count = 0 Then
+            TabPage3.Text = "Mise a jour"
+            GroupBox1.Hide()
+            GroupBox2.Hide()
+            GroupBox3.Hide()
+            GroupBox4.Hide()
+            GunaButton5.Hide()
+            Label17.Show()
+            Button5.Enabled = False
+            Button6.Enabled = False
+        Else
+            Label17.Hide()
+            nmlogup = 0
+            Dim i As Integer = 0
+            While i <= ListBox2.Items.Count - 1
+                ListBox2.SelectedIndex = i
+                Dim lines1() As String = File.ReadAllLines(ListBox2.SelectedItem & "\version.txt")
+                Dim lines2() As String = File.ReadAllLines(ListBox2.SelectedItem & "\updatedl.txt")
+                Dim maj2 As New WebClient
+                Dim vri2 As String = maj2.DownloadString(lines2(0) & "/version/versionactuel.txt")
+                If lines1(0) = vri2 Then
+
+                Else
+                    nmlogup = nmlogup + 1
+                    Dim CLMpronom = ListBox2.SelectedItem.ToString.Replace(dosprogramefile, "")
+
+                    Dim lines21() As String = File.ReadAllLines(dosupdate & "/page.txt")
+
+                    Dim lines3() As String = File.ReadAllLines(dosupdate & "/page" & lines21(0) & "/logi.txt")
+
+
+                    If lines3(0) = 4 Then
+                        Directory.CreateDirectory(dosupdate & "/page" & lines21(0).ToString + 1)
+                        Dim sw23 As New StreamWriter(dosupdate & "/page.txt")
+                        sw23.WriteLine(lines21(0).ToString + 1)
+                        sw23.Close()
+                        Dim lines2bis() As String = File.ReadAllLines(dosupdate & "/page.txt")
+                        Directory.CreateDirectory(dosupdate & "/page" & lines2bis(0) & "/" & CLMpronom & "/")
+                        My.Computer.Network.DownloadFile(lines2(0) & "/image.jpg", (dosupdate & "/page" & lines2bis(0) & "/" & CLMpronom & "/image.jpg"))
+                        Dim sw234 As New StreamWriter(dosupdate & "/page" & lines2bis(0) & "/" & CLMpronom & "/nom.txt")
+                        sw234.WriteLine(CLMpronom)
+                        sw234.Close()
+
+                        ListBox3.Items.Clear()
+
+                        For Each fichier As String In IO.Directory.GetDirectories(dosupdate & "/page" & lines2bis(0) & "/")
+                            Dim info As New IO.FileInfo(fichier)
+                            ListBox3.Items.Add(info.Name)
+                        Next
+
+                        Dim sw22 As New StreamWriter(dosupdate & "/page" & lines2bis(0) & "/logi.txt")
+                        sw22.WriteLine(ListBox3.Items.Count)
+                        sw22.Close()
+                    Else
+                        If Directory.Exists(dosupdate & "/page" & lines21(0) & "/" & CLMpronom & "/") = False Then
+                            Directory.CreateDirectory(dosupdate & "/page" & lines21(0) & "/" & CLMpronom & "/")
+                            My.Computer.Network.DownloadFile(lines2(0) & "/image.jpg", (dosupdate & "/page" & lines21(0) & "/" & CLMpronom & "/image.jpg"))
+                            Dim sw23 As New StreamWriter(dosupdate & "/page" & lines21(0) & "/" & CLMpronom & "/nom.txt")
+                            sw23.WriteLine(CLMpronom)
+                            sw23.Close()
+                        End If
+                        ListBox3.Items.Clear()
+
+                        For Each fichier As String In IO.Directory.GetDirectories(dosupdate & "/page" & lines21(0) & "/")
+                            Dim info As New IO.FileInfo(fichier)
+                            ListBox3.Items.Add(info.Name)
+                        Next
+
+                        Dim sw22 As New StreamWriter(dosupdate & "/page" & lines21(0) & "/logi.txt")
+                        sw22.WriteLine(ListBox3.Items.Count)
+                        sw22.Close()
+                    End If
+                End If
+                i = i + 1
+            End While
+            If ListBox2.Items.Count = 1 Then
+                TabPage3.Text = "Mise a jour (" & nmlogup & ")"
+
+                GunaButton5.Text = "Mètre à jour le logiciel"
+                NotifyIcon1.BalloonTipTitle = "Mise a jour disponible"
+                NotifyIcon1.Text = nom & ": Unemise a jour disponible"
+                NotifyIcon1.BalloonTipText = "une mise a jour est disponible"
+                NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
+                NotifyIcon1.ShowBalloonTip(1)
+            Else
+                TabPage3.Text = "Mise a jours (" & nmlogup & ")"
+
+                GunaButton5.Text = "Mètre à jour les (" & nmlogup & ") logiciels"
+                NotifyIcon1.Text = nom & ": " & nmlogup & " mise a jours sont disponible"
+                NotifyIcon1.BalloonTipTitle = "Des mise a jour sont disponible"
+                NotifyIcon1.BalloonTipText = nmlogup & " mise a jours sont disponible"
+                NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
+                NotifyIcon1.ShowBalloonTip(1)
+            End If
+            teste()
+        End If
+    End Sub
+    Sub teste()
+
+        If nbmiage3 = 1 Then
+            PictureBox23.Image.Dispose()
+        ElseIf nbmiage3 = 2 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+        ElseIf nbmiage3 = 3 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+            PictureBox25.Image.Dispose()
+        ElseIf nbmiage3 = 4 Then
+            PictureBox23.Image.Dispose()
+            PictureBox24.Image.Dispose()
+            PictureBox25.Image.Dispose()
+            PictureBox26.Image.Dispose()
+        Else
+
+        End If
+
+        Dim lines1() As String = File.ReadAllLines(dosupdate & "/page.txt")
+        Label7.Text = pagesacctuel3 & "/" & lines1(0)
+
+
+        If Label7.Text = 1 & "/" & lines1(0) And pagesacctuel3.ToString = lines1(0) Then
+            Button6.Enabled = False
+            Button5.Enabled = False
+        ElseIf Label7.Text = lines1(0) & "/" & lines1(0) Then
+            Button6.Enabled = True
+            Button5.Enabled = False
+        ElseIf Label7.Text = 1 & "/" & lines1(0) Then
+            Button6.Enabled = False
+            Button5.Enabled = True
+        Else
+            Button5.Enabled = True
+            Button6.Enabled = True
+        End If
+
+
+        If Directory.Exists(dosupdate & "/page" & pagesacctuel3 & "/image/") = True Then
+            For Each fichier As String In IO.Directory.GetFiles(dosupdate & "/page" & pagesacctuel3 & "/image/")
+                Dim info As New IO.FileInfo(fichier)
+                File.Delete(fichier)
+            Next
+            Directory.Delete(dosupdate & "/page" & pagesacctuel3 & "/image/")
+        End If
+
+        ListBox3.Items.Clear()
+
+        For Each fichier As String In IO.Directory.GetDirectories(dosupdate & "/page" & pagesacctuel3 & "/")
+            Dim info As New IO.FileInfo(fichier)
+            ListBox3.Items.Add(fichier)
+        Next
+        Dim sw11 As New StreamWriter(dosupdate & "/page" & pagesacctuel3 & "/logi.txt")
+        sw11.WriteLine(ListBox3.Items.Count)
+        sw11.Close()
+
+        Dim i As Integer = 1
+        While i <= ListBox3.Items.Count
+            ListBox3.SelectedIndex = i - 1
+            My.Computer.FileSystem.CopyFile(ListBox3.SelectedItem & "/image.jpg", dosupdate & "/page" & pagesacctuel3 & "/image/image" & i & ".jpg")
+            Dim sw1 As New StreamWriter(dosupdate & "/page" & pagesacctuel3 & "/image/lient" & i & ".txt")
+            sw1.WriteLine(ListBox3.SelectedItem)
+            sw1.Close()
+            i = i + 1
+        End While
+
+        If ListBox3.Items.Count = 1 Then
+            PictureBox23.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image1.jpg")
+            Dim lines3() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient1.txt")
+            Dim blabla = lines3(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox1.Text = blabla
+            Label4.Text = blabla
+            Dim lines4() As String = File.ReadAllLines(dosprogramefile & blabla & "/version.txt")
+            Label5.Text = "Version installer: " & lines4(0)
+            Dim lines5() As String = File.ReadAllLines(dosprogramefile & blabla & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label6.Text = "Nouvelle version: " & lines6(0)
+            PictureBox23.Show()
+            PictureBox24.Hide()
+            PictureBox25.Hide()
+            PictureBox26.Hide()
+            GroupBox1.Show()
+            GroupBox2.Hide()
+            GroupBox3.Hide()
+            GroupBox4.Hide()
+        ElseIf ListBox3.Items.Count = 2 Then
+            PictureBox23.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image1.jpg")
+            PictureBox24.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image2.jpg")
+            Dim lines3() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient1.txt")
+            Dim blabla = lines3(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox1.Text = blabla
+            Label4.Text = blabla
+            Dim lines4() As String = File.ReadAllLines(dosprogramefile & blabla & "/version.txt")
+            Label5.Text = "Version installer: " & lines4(0)
+            Dim lines5() As String = File.ReadAllLines(dosprogramefile & blabla & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label6.Text = "Nouvelle version: " & lines6(0)
+            Dim lines3a() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient2.txt")
+            Dim blabla2 = lines3a(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox2.Text = blabla2
+            Label10.Text = blabla2
+            Dim lines4a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/version.txt")
+            Label9.Text = "Version installer: " & lines4(0)
+            Dim lines5a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5a(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6a() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label8.Text = "Nouvelle version: " & lines6a(0)
+            PictureBox23.Show()
+            PictureBox24.Show()
+            PictureBox25.Hide()
+            PictureBox26.Hide()
+            GroupBox1.Show()
+            GroupBox2.Show()
+            GroupBox3.Hide()
+            GroupBox4.Hide()
+        ElseIf ListBox3.Items.Count = 3 Then
+            PictureBox23.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image1.jpg")
+            PictureBox24.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image2.jpg")
+            PictureBox25.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image3.jpg")
+            Dim lines3() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient1.txt")
+            Dim blabla = lines3(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox1.Text = blabla
+            Label4.Text = blabla
+            Dim lines4() As String = File.ReadAllLines(dosprogramefile & blabla & "/version.txt")
+            Label5.Text = "Version installer: " & lines4(0)
+            Dim lines5() As String = File.ReadAllLines(dosprogramefile & blabla & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label6.Text = "Nouvelle version: " & lines6(0)
+            Dim lines3a() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient2.txt")
+            Dim blabla2 = lines3a(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox2.Text = blabla2
+            Label10.Text = blabla2
+            Dim lines4a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/version.txt")
+            Label9.Text = "Version installer: " & lines4(0)
+            Dim lines5a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5a(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6a() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label8.Text = "Nouvelle version: " & lines6a(0)
+            Dim lines3b() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient3.txt")
+            Dim blabla3 = lines3b(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox3.Text = blabla3
+            Label13.Text = blabla3
+            Dim lines4b() As String = File.ReadAllLines(dosprogramefile & blabla3 & "/version.txt")
+            Label12.Text = "Version installer: " & lines4b(0)
+            Dim lines5b() As String = File.ReadAllLines(dosprogramefile & blabla3 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5b(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6b() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label11.Text = "Nouvelle version: " & lines6b(0)
+            PictureBox23.Show()
+            PictureBox24.Show()
+            PictureBox25.Show()
+            PictureBox26.Hide()
+            GroupBox1.Show()
+            GroupBox2.Show()
+            GroupBox3.Show()
+            GroupBox4.Hide()
+        ElseIf ListBox3.Items.Count = 4 Then
+            PictureBox23.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image1.jpg")
+            PictureBox24.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image2.jpg")
+            PictureBox25.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image3.jpg")
+            PictureBox26.Image = Image.FromFile(dosupdate & "/page" & pagesacctuel3 & "/image/image4.jpg")
+            Dim lines3() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient1.txt")
+            Dim blabla = lines3(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox1.Text = blabla
+            Label4.Text = blabla
+            Dim lines4() As String = File.ReadAllLines(dosprogramefile & blabla & "/version.txt")
+            Label5.Text = "Version installer: " & lines4(0)
+            Dim lines5() As String = File.ReadAllLines(dosprogramefile & blabla & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label6.Text = "Nouvelle version: " & lines6(0)
+            Dim lines3a() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient2.txt")
+            Dim blabla2 = lines3a(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox2.Text = blabla2
+            Label10.Text = blabla2
+            Dim lines4a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/version.txt")
+            Label9.Text = "Version installer: " & lines4(0)
+            Dim lines5a() As String = File.ReadAllLines(dosprogramefile & blabla2 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5a(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6a() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label8.Text = "Nouvelle version: " & lines6a(0)
+            Dim lines3b() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient3.txt")
+            Dim blabla3 = lines3b(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox3.Text = blabla3
+            Label13.Text = blabla3
+            Dim lines4b() As String = File.ReadAllLines(dosprogramefile & blabla3 & "/version.txt")
+            Label12.Text = "Version installer: " & lines4b(0)
+            Dim lines5b() As String = File.ReadAllLines(dosprogramefile & blabla3 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5b(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6b() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label11.Text = "Nouvelle version: " & lines6b(0)
+            Dim lines3c() As String = File.ReadAllLines(dosupdate & "/page" & pagesacctuel3 & "/image/lient4.txt")
+            Dim blabla4 = lines3c(0).ToString.Replace(dosupdate & "/page" & pagesacctuel3 & "/", "")
+            GroupBox4.Text = blabla4
+            Label16.Text = blabla4
+            Dim lines4c() As String = File.ReadAllLines(dosprogramefile & blabla4 & "/version.txt")
+            Label15.Text = "Version installer: " & lines4c(0)
+            Dim lines5c() As String = File.ReadAllLines(dosprogramefile & blabla4 & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines5c(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines6c() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            File.Delete(dostemp & "/versionactuel.txt")
+            Label14.Text = "Nouvelle version: " & lines6c(0)
+            PictureBox23.Show()
+            PictureBox24.Show()
+            PictureBox25.Show()
+            PictureBox26.Show()
+            GroupBox1.Show()
+            GroupBox2.Show()
+            GroupBox3.Show()
+            GroupBox4.Show()
+        Else
+            PictureBox23.Hide()
+            PictureBox24.Hide()
+            PictureBox25.Hide()
+            PictureBox26.Hide()
+            GroupBox1.Hide()
+            GroupBox2.Hide()
+            GroupBox3.Hide()
+            GroupBox4.Hide()
+        End If
+        nbmiage3 = ListBox3.Items.Count
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        updatelogi()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        pagesacctuel3 = pagesacctuel3 + 1
+        teste()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        pagesacctuel3 = pagesacctuel3 - 1
+        teste()
     End Sub
 End Class
