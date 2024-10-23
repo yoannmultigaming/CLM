@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
-Imports System.Diagnostics.Eventing.Reader
 Imports System.IO
+Imports System.IO.Compression
 Imports System.Net
 Imports System.Security.Cryptography
 Imports System.Text
@@ -13,8 +13,8 @@ Public Class Form1
     Dim nbmiage2 As Integer = 0
     Dim nbmiage3 As Integer = 0
     Dim nmlogup As Integer = 0
+    Dim updategroup As Integer = 1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TabPage3.Text = "Mise a jour (4)"
         SplashScreen1.Close()
         Dim lines1() As String = File.ReadAllLines(connecter)
         If lines1(0) = 1 Then
@@ -2889,24 +2889,32 @@ Public Class Form1
                 End If
                 i = i + 1
             End While
-            If ListBox2.Items.Count = 1 Then
+            If nmlogup = 1 Then
                 TabPage3.Text = "Mise a jour (" & nmlogup & ")"
-
                 GunaButton5.Text = "Mètre à jour le logiciel"
                 NotifyIcon1.BalloonTipTitle = "Mise a jour disponible"
                 NotifyIcon1.Text = nom & ": Unemise a jour disponible"
                 NotifyIcon1.BalloonTipText = "une mise a jour est disponible"
                 NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
                 NotifyIcon1.ShowBalloonTip(1)
-            Else
+            ElseIf nmlogup > 1 Then
                 TabPage3.Text = "Mise a jours (" & nmlogup & ")"
-
                 GunaButton5.Text = "Mètre à jour les (" & nmlogup & ") logiciels"
                 NotifyIcon1.Text = nom & ": " & nmlogup & " mise a jours sont disponible"
                 NotifyIcon1.BalloonTipTitle = "Des mise a jour sont disponible"
                 NotifyIcon1.BalloonTipText = nmlogup & " mise a jours sont disponible"
                 NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
                 NotifyIcon1.ShowBalloonTip(1)
+            Else
+                TabPage3.Text = "Mise a jour"
+                GroupBox1.Hide()
+                GroupBox2.Hide()
+                GroupBox3.Hide()
+                GroupBox4.Hide()
+                GunaButton5.Hide()
+                Label17.Show()
+                Button5.Enabled = False
+                Button6.Enabled = False
             End If
             teste()
         End If
@@ -3159,5 +3167,164 @@ Public Class Form1
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         pagesacctuel3 = pagesacctuel3 - 1
         teste()
+    End Sub
+
+    Private Sub GunaButton1_Click(sender As Object, e As EventArgs) Handles GunaButton1.Click
+        updategroup = 1
+        GunaButton1.Hide()
+        GroupBox2.Enabled = False
+        GroupBox3.Enabled = False
+        GroupBox4.Enabled = False
+        ProgressBar1.Show()
+        Dim lines1() As String = File.ReadAllLines(dosprogramefile & "/" & GroupBox1.Text & "/updatedl.txt")
+        My.Computer.Network.DownloadFile(lines1(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+        Dim lines2() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+        Dim sw1 As New StreamWriter(dosprogramefile & "\" & GroupBox1.Text & "\version.txt")
+        sw1.WriteLine(lines2(0))
+        sw1.Close()
+        File.Delete(dostemp & "/versionactuel.txt")
+        téléchargerfr = New WebClient
+        téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
+    End Sub
+
+    Private Sub téléchargerfr_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles téléchargerfr.DownloadProgressChanged
+        If updategroup = 1 Then
+            ProgressBar1.Value = e.ProgressPercentage
+        ElseIf updategroup = 2 Then
+            ProgressBar2.Value = e.ProgressPercentage
+        ElseIf updategroup = 3 Then
+            ProgressBar3.Value = e.ProgressPercentage
+        ElseIf updategroup = 4 Then
+            ProgressBar4.Value = e.ProgressPercentage
+        End If
+    End Sub
+
+    Private Sub téléchargerfr_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles téléchargerfr.DownloadFileCompleted
+        If updategroup = 1 Then
+            ProgressBar1.Style = ProgressBarStyle.Marquee
+        ElseIf updategroup = 2 Then
+            ProgressBar2.Style = ProgressBarStyle.Marquee
+        ElseIf updategroup = 3 Then
+            ProgressBar3.Style = ProgressBarStyle.Marquee
+        ElseIf updategroup = 4 Then
+            ProgressBar4.Style = ProgressBarStyle.Marquee
+        End If
+        BackgroundWorker1.RunWorkerAsync()
+    End Sub
+
+    Dim WithEvents téléchargerfr As WebClient
+
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        If updategroup = 1 Then
+            My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & GroupBox1.Text & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+            ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", dosprogramefile & "/" & GroupBox1.Text & "/programe/")
+        ElseIf updategroup = 2 Then
+            My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & GroupBox2.Text & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+            ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", dosprogramefile & "/" & GroupBox2.Text & "/programe/")
+        ElseIf updategroup = 3 Then
+            My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & GroupBox3.Text & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+            ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", dosprogramefile & "/" & GroupBox3.Text & "/programe/")
+        ElseIf updategroup = 4 Then
+            My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & GroupBox4.Text & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+            ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", dosprogramefile & "/" & GroupBox4.Text & "/programe/")
+        End If
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        If updategroup = 1 Then
+            File.Delete(dosprogramefile & "\programe.zip")
+            ProgressBar1.Style = ProgressBarStyle.Continuous
+            ProgressBar1.Hide()
+            GunaButton1.Show()
+            GroupBox2.Enabled = True
+            GroupBox3.Enabled = True
+            GroupBox4.Enabled = True
+            MsgBox("Le logiciel: " & GroupBox1.Text & " a bien êtê mis a jour", MsgBoxStyle.Information)
+            updatelogi()
+        ElseIf updategroup = 2 Then
+            File.Delete(dosprogramefile & "\programe.zip")
+            ProgressBar2.Style = ProgressBarStyle.Continuous
+            ProgressBar2.Hide()
+            GunaButton2.Show()
+            GroupBox1.Enabled = True
+            GroupBox3.Enabled = True
+            GroupBox4.Enabled = True
+            MsgBox("Le logiciel: " & GroupBox2.Text & " a bien êtê mis a jour", MsgBoxStyle.Information)
+            updatelogi()
+        ElseIf updategroup = 3 Then
+            File.Delete(dosprogramefile & "\programe.zip")
+            ProgressBar3.Style = ProgressBarStyle.Continuous
+            ProgressBar3.Hide()
+            GunaButton3.Show()
+            GroupBox1.Enabled = True
+            GroupBox2.Enabled = True
+            GroupBox4.Enabled = True
+            MsgBox("Le logiciel: " & GroupBox3.Text & " a bien êtê mis a jour", MsgBoxStyle.Information)
+            updatelogi()
+        ElseIf updategroup = 4 Then
+            File.Delete(dosprogramefile & "\programe.zip")
+            ProgressBar4.Style = ProgressBarStyle.Continuous
+            ProgressBar4.Hide()
+            GunaButton4.Show()
+            GroupBox1.Enabled = True
+            GroupBox2.Enabled = True
+            GroupBox3.Enabled = True
+            MsgBox("Le logiciel: " & GroupBox4.Text & " a bien êtê mis a jour", MsgBoxStyle.Information)
+            updatelogi()
+        End If
+    End Sub
+
+    Private Sub GunaButton2_Click(sender As Object, e As EventArgs) Handles GunaButton2.Click
+        updategroup = 2
+        GunaButton2.Hide()
+        GroupBox1.Enabled = False
+        GroupBox3.Enabled = False
+        GroupBox4.Enabled = False
+        ProgressBar2.Show()
+        Dim lines1() As String = File.ReadAllLines(dosprogramefile & "/" & GroupBox2.Text & "/updatedl.txt")
+        My.Computer.Network.DownloadFile(lines1(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+        Dim lines2() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+        Dim sw1 As New StreamWriter(dosprogramefile & "\" & GroupBox2.Text & "\version.txt")
+        sw1.WriteLine(lines2(0))
+        sw1.Close()
+        File.Delete(dostemp & "/versionactuel.txt")
+        téléchargerfr = New WebClient
+        téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
+    End Sub
+
+    Private Sub GunaButton3_Click(sender As Object, e As EventArgs) Handles GunaButton3.Click
+        updategroup = 3
+        GunaButton3.Hide()
+        GroupBox1.Enabled = False
+        GroupBox2.Enabled = False
+        GroupBox4.Enabled = False
+        ProgressBar3.Show()
+        Dim lines1() As String = File.ReadAllLines(dosprogramefile & "/" & GroupBox3.Text & "/updatedl.txt")
+        My.Computer.Network.DownloadFile(lines1(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+        Dim lines2() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+        Dim sw1 As New StreamWriter(dosprogramefile & "\" & GroupBox3.Text & "\version.txt")
+        sw1.WriteLine(lines2(0))
+        sw1.Close()
+        File.Delete(dostemp & "/versionactuel.txt")
+        téléchargerfr = New WebClient
+        téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
+    End Sub
+
+    Private Sub GunaButton4_Click(sender As Object, e As EventArgs) Handles GunaButton4.Click
+        updategroup = 4
+        GunaButton3.Hide()
+        GroupBox1.Enabled = False
+        GroupBox2.Enabled = False
+        GroupBox3.Enabled = False
+        ProgressBar4.Show()
+        Dim lines1() As String = File.ReadAllLines(dosprogramefile & "/" & GroupBox4.Text & "/updatedl.txt")
+        My.Computer.Network.DownloadFile(lines1(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+        Dim lines2() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+        Dim sw1 As New StreamWriter(dosprogramefile & "\" & GroupBox4.Text & "\version.txt")
+        sw1.WriteLine(lines2(0))
+        sw1.Close()
+        File.Delete(dostemp & "/versionactuel.txt")
+        téléchargerfr = New WebClient
+        téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
     End Sub
 End Class

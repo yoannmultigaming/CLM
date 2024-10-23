@@ -25,6 +25,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ChromeTabcontrol1 = New CLM.ChromeTabcontrol()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -69,24 +70,28 @@ Partial Class Form1
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
         Me.GunaButton4 = New Guna.UI.WinForms.GunaButton()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.PictureBox26 = New System.Windows.Forms.PictureBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
         Me.GunaButton3 = New Guna.UI.WinForms.GunaButton()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.PictureBox25 = New System.Windows.Forms.PictureBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.GunaButton2 = New Guna.UI.WinForms.GunaButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.PictureBox24 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
         Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -137,6 +142,9 @@ Partial Class Form1
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Text = "CLM"
         Me.NotifyIcon1.Visible = True
+        '
+        'BackgroundWorker1
+        '
         '
         'ChromeTabcontrol1
         '
@@ -635,7 +643,7 @@ Partial Class Form1
         Me.GunaButton5.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton5.OnHoverImage = Nothing
         Me.GunaButton5.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaButton5.Size = New System.Drawing.Size(695, 31)
+        Me.GunaButton5.Size = New System.Drawing.Size(697, 31)
         Me.GunaButton5.TabIndex = 2
         Me.GunaButton5.Text = "Mètre à jour les 4 logiciel"
         '
@@ -673,6 +681,7 @@ Partial Class Form1
         '
         Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox4.Controls.Add(Me.ProgressBar4)
         Me.GroupBox4.Controls.Add(Me.GunaButton4)
         Me.GroupBox4.Controls.Add(Me.Label14)
         Me.GroupBox4.Controls.Add(Me.Label15)
@@ -684,6 +693,14 @@ Partial Class Form1
         Me.GroupBox4.TabIndex = 0
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "GroupBox1"
+        '
+        'ProgressBar4
+        '
+        Me.ProgressBar4.Location = New System.Drawing.Point(516, 39)
+        Me.ProgressBar4.Name = "ProgressBar4"
+        Me.ProgressBar4.Size = New System.Drawing.Size(176, 23)
+        Me.ProgressBar4.TabIndex = 4
+        Me.ProgressBar4.Visible = False
         '
         'GunaButton4
         '
@@ -749,6 +766,7 @@ Partial Class Form1
         Me.GroupBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox3.Controls.Add(Me.ProgressBar3)
         Me.GroupBox3.Controls.Add(Me.GunaButton3)
         Me.GroupBox3.Controls.Add(Me.Label11)
         Me.GroupBox3.Controls.Add(Me.Label12)
@@ -760,6 +778,14 @@ Partial Class Form1
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "GroupBox1"
+        '
+        'ProgressBar3
+        '
+        Me.ProgressBar3.Location = New System.Drawing.Point(516, 37)
+        Me.ProgressBar3.Name = "ProgressBar3"
+        Me.ProgressBar3.Size = New System.Drawing.Size(176, 23)
+        Me.ProgressBar3.TabIndex = 5
+        Me.ProgressBar3.Visible = False
         '
         'GunaButton3
         '
@@ -825,6 +851,7 @@ Partial Class Form1
         Me.GroupBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.ProgressBar2)
         Me.GroupBox2.Controls.Add(Me.GunaButton2)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label9)
@@ -836,6 +863,14 @@ Partial Class Form1
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox1"
+        '
+        'ProgressBar2
+        '
+        Me.ProgressBar2.Location = New System.Drawing.Point(516, 37)
+        Me.ProgressBar2.Name = "ProgressBar2"
+        Me.ProgressBar2.Size = New System.Drawing.Size(176, 23)
+        Me.ProgressBar2.TabIndex = 4
+        Me.ProgressBar2.Visible = False
         '
         'GunaButton2
         '
@@ -901,6 +936,7 @@ Partial Class Form1
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.ProgressBar1)
         Me.GroupBox1.Controls.Add(Me.GunaButton1)
         Me.GroupBox1.Controls.Add(Me.ListBox3)
         Me.GroupBox1.Controls.Add(Me.Label6)
@@ -913,6 +949,14 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(516, 39)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(176, 23)
+        Me.ProgressBar1.TabIndex = 3
+        Me.ProgressBar1.Visible = False
         '
         'GunaButton1
         '
@@ -984,9 +1028,9 @@ Partial Class Form1
         'ListBox2
         '
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(236, 14)
+        Me.ListBox2.Location = New System.Drawing.Point(172, 421)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(120, 17)
+        Me.ListBox2.Size = New System.Drawing.Size(18, 17)
         Me.ListBox2.TabIndex = 1
         '
         'TabPage4
@@ -1139,4 +1183,9 @@ Partial Class Form1
     Friend WithEvents ListBox3 As ListBox
     Public WithEvents GunaButton5 As Guna.UI.WinForms.GunaButton
     Friend WithEvents Button7 As Button
+    Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ProgressBar4 As ProgressBar
+    Friend WithEvents ProgressBar3 As ProgressBar
+    Friend WithEvents ProgressBar2 As ProgressBar
 End Class
