@@ -14,6 +14,10 @@ Public Class Form1
     Dim nbmiage3 As Integer = 0
     Dim nmlogup As Integer = 0
     Dim updategroup As Integer = 1
+    Dim updateautovar As Integer = -1
+    Dim select4update As String = ""
+    Dim recherche = 0
+    Public siteorganisation = ""
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SplashScreen1.Close()
         Dim lines1() As String = File.ReadAllLines(connecter)
@@ -27,6 +31,8 @@ Public Class Form1
         End If
     End Sub
     Sub start()
+        ComboBox3.Enabled = False
+        Label24.Enabled = False
         Dim lines1() As String = File.ReadAllLines(dosconnextion & "clecrypt.txt")
         Dim Resultatbytes() As Byte = Convert.FromBase64String(lines1(0))
         Dim keyBytes() As Byte = Encoding.UTF8.GetBytes(crypCLM)
@@ -79,8 +85,333 @@ Public Class Form1
         CLMid = idftp
         CLMpass = passftp
 
+        My.Computer.Network.DownloadFile(ipsite & "/CLM/config/nom.txt", dosrepertoire & "/nom.txt")
+        Dim nameinstance() As String = File.ReadAllLines(dosrepertoire & "/nom.txt")
+        File.Delete(dosrepertoire & "/nom.txt")
+        nom = nameinstance(0)
+
+        If File.Exists(dosconfig & "/profils.txt") = True Then
+            Dim eaeaedfzad() As String = File.ReadAllLines(dosconfig & "/profils.txt")
+            CLMprofil = eaeaedfzad(0)
+        Else
+            Dim sw1 As New StreamWriter(dosconfig & "/profils.txt")
+            sw1.WriteLine("default")
+            sw1.Close()
+            CLMprofil = "default"
+        End If
+
+
+        My.Computer.Network.DownloadFile(ipsite & "/CLM/logiciel/profil/" & CLMprofil & "/configuration/lock.txt", dosconfig & "/lock.txt")
+        Dim azeefzzqezr() As String = File.ReadAllLines(dosconfig & "/lock.txt")
+        File.Delete(dosconfig & "/lock.txt")
+        If azeefzzqezr(0) = 1 Then
+            Label26.Text = "Les paramètres ont êtê blocker par votre organisation"
+            Label26.Show()
+            GunaGoogleSwitch1.Enabled = False
+            Label23.Enabled = False
+            GunaGoogleSwitch2.Enabled = False
+            Label25.Enabled = False
+            ComboBox4.Enabled = False
+            If File.Exists(dosconfig & "/config.txt") = True Then
+                File.Delete(dosconfig & "/config.txt")
+            End If
+            My.Computer.Network.DownloadFile(ipsite & "/CLM/logiciel/profil/" & CLMprofil & "/configuration/config.txt", dosconfig & "/config.txt")
+            Dim afujrgferfeghez() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            If afujrgferfeghez(0) = 1 Then
+                GunaGoogleSwitch1.Checked = True
+            Else
+                GunaGoogleSwitch1.Checked = False
+            End If
+
+            Dim registry As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser
+            Dim mer As Integer = 0
+            Dim key As Microsoft.Win32.RegistryKey = registry.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+            Dim vreg = Nothing
+
+            If key.GetValue(Application.ProductName) Is Nothing Then
+                vreg = 0
+            Else
+                vreg = 1
+            End If
+
+            If afujrgferfeghez(0) = 1 Then
+                If vreg = 0 Then
+                    key.SetValue(Application.ProductName, Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String)
+                End If
+            Else
+                If vreg = 1 Then
+                    key.DeleteValue(Application.ProductName)
+                End If
+            End If
+
+            If afujrgferfeghez(1) = 1 Then
+                GunaGoogleSwitch2.Checked = True
+                If afujrgferfeghez(2) = 5 Then
+                    ComboBox4.SelectedItem = "5 Minutes"
+                    Timer1.Interval = 300000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 10 Then
+                    ComboBox4.SelectedItem = "10 Minutes"
+                    Timer1.Interval = 600000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 15 Then
+                    ComboBox4.SelectedItem = "15 Minutes"
+                    Timer1.Interval = 900000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 20 Then
+                    ComboBox4.SelectedItem = "20 Minutes"
+                    Timer1.Interval = 1200000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 25 Then
+                    ComboBox4.SelectedItem = "25 Minutes"
+                    Timer1.Interval = 1500000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 30 Then
+                    ComboBox4.SelectedItem = "30 Minutes"
+                    Timer1.Interval = 1800000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 35 Then
+                    ComboBox4.SelectedItem = "35 Minutes"
+                    Timer1.Interval = 2100000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 40 Then
+                    ComboBox4.SelectedItem = "40 Minutes"
+                    Timer1.Interval = 2400000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 45 Then
+                    ComboBox4.SelectedItem = "45 Minutes"
+                    Timer1.Interval = 2700000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 50 Then
+                    ComboBox4.SelectedItem = "50 Minutes"
+                    Timer1.Interval = 3000000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 55 Then
+                    ComboBox4.SelectedItem = "55 Minutes"
+                    Timer1.Interval = 3300000
+                    Timer1.Start()
+                ElseIf afujrgferfeghez(2) = 60 Then
+                    ComboBox4.SelectedItem = "60 Minutes"
+                    Timer1.Interval = 3600000
+                    Timer1.Start()
+                End If
+            Else
+                GunaGoogleSwitch2.Checked = False
+                ComboBox4.Hide()
+            End If
+        Else
+            Label26.Hide()
+            If File.Exists(dosconfig & "/config.txt") = True Then
+                Dim afujrgferfeghez() As String = File.ReadAllLines(dosconfig & "/config.txt")
+                If afujrgferfeghez(0) = 1 Then
+                    GunaGoogleSwitch1.Checked = True
+                Else
+                    GunaGoogleSwitch1.Checked = False
+                End If
+
+                Dim registry As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser
+                Dim mer As Integer = 0
+                Dim key As Microsoft.Win32.RegistryKey = registry.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+                Dim vreg = Nothing
+
+                If key.GetValue(Application.ProductName) Is Nothing Then
+                    vreg = 0
+                Else
+                    vreg = 1
+                End If
+
+                If afujrgferfeghez(0) = 1 Then
+                    If vreg = 0 Then
+                        key.SetValue(Application.ProductName, Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String)
+                    End If
+                Else
+                    If vreg = 1 Then
+                        key.DeleteValue(Application.ProductName)
+                    End If
+                End If
+
+                If afujrgferfeghez(1) = 1 Then
+                    GunaGoogleSwitch2.Checked = True
+                    If afujrgferfeghez(2) = 5 Then
+                        ComboBox4.SelectedItem = "5 Minutes"
+                        Timer1.Interval = 300000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 10 Then
+                        ComboBox4.SelectedItem = "10 Minutes"
+                        Timer1.Interval = 600000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 15 Then
+                        ComboBox4.SelectedItem = "15 Minutes"
+                        Timer1.Interval = 900000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 20 Then
+                        ComboBox4.SelectedItem = "20 Minutes"
+                        Timer1.Interval = 1200000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 25 Then
+                        ComboBox4.SelectedItem = "25 Minutes"
+                        Timer1.Interval = 1500000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 30 Then
+                        ComboBox4.SelectedItem = "30 Minutes"
+                        Timer1.Interval = 1800000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 35 Then
+                        ComboBox4.SelectedItem = "35 Minutes"
+                        Timer1.Interval = 2100000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 40 Then
+                        ComboBox4.SelectedItem = "40 Minutes"
+                        Timer1.Interval = 2400000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 45 Then
+                        ComboBox4.SelectedItem = "45 Minutes"
+                        Timer1.Interval = 2700000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 50 Then
+                        ComboBox4.SelectedItem = "50 Minutes"
+                        Timer1.Interval = 3000000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 55 Then
+                        ComboBox4.SelectedItem = "55 Minutes"
+                        Timer1.Interval = 3300000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 60 Then
+                        ComboBox4.SelectedItem = "60 Minutes"
+                        Timer1.Interval = 3600000
+                        Timer1.Start()
+                    End If
+                Else
+                    GunaGoogleSwitch2.Checked = False
+                    ComboBox4.Hide()
+                End If
+            Else
+                My.Computer.Network.DownloadFile(ipsite & "/CLM/logiciel/profil/" & CLMprofil & "/configuration/config.txt", dosconfig & "/config.txt")
+                Dim afujrgferfeghez() As String = File.ReadAllLines(dosconfig & "/config.txt")
+                If afujrgferfeghez(0) = 1 Then
+                    GunaGoogleSwitch1.Checked = True
+                Else
+                    GunaGoogleSwitch1.Checked = False
+                End If
+
+                Dim registry As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser
+                Dim mer As Integer = 0
+                Dim key As Microsoft.Win32.RegistryKey = registry.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+                Dim vreg = Nothing
+
+                If key.GetValue(Application.ProductName) Is Nothing Then
+                    vreg = 0
+                Else
+                    vreg = 1
+                End If
+
+                If afujrgferfeghez(0) = 1 Then
+                    If vreg = 0 Then
+                        key.SetValue(Application.ProductName, Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String)
+                    End If
+                Else
+                    If vreg = 1 Then
+                        key.DeleteValue(Application.ProductName)
+                    End If
+                End If
+
+                If afujrgferfeghez(1) = 1 Then
+                    GunaGoogleSwitch2.Checked = True
+                    If afujrgferfeghez(2) = 5 Then
+                        ComboBox4.SelectedItem = "5 Minutes"
+                        Timer1.Interval = 300000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 10 Then
+                        ComboBox4.SelectedItem = "10 Minutes"
+                        Timer1.Interval = 600000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 15 Then
+                        ComboBox4.SelectedItem = "15 Minutes"
+                        Timer1.Interval = 900000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 20 Then
+                        ComboBox4.SelectedItem = "20 Minutes"
+                        Timer1.Interval = 1200000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 25 Then
+                        ComboBox4.SelectedItem = "25 Minutes"
+                        Timer1.Interval = 1500000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 30 Then
+                        ComboBox4.SelectedItem = "30 Minutes"
+                        Timer1.Interval = 1800000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 35 Then
+                        ComboBox4.SelectedItem = "35 Minutes"
+                        Timer1.Interval = 2100000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 40 Then
+                        ComboBox4.SelectedItem = "40 Minutes"
+                        Timer1.Interval = 2400000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 45 Then
+                        ComboBox4.SelectedItem = "45 Minutes"
+                        Timer1.Interval = 2700000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 50 Then
+                        ComboBox4.SelectedItem = "50 Minutes"
+                        Timer1.Interval = 3000000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 55 Then
+                        ComboBox4.SelectedItem = "55 Minutes"
+                        Timer1.Interval = 3300000
+                        Timer1.Start()
+                    ElseIf afujrgferfeghez(2) = 60 Then
+                        ComboBox4.SelectedItem = "60 Minutes"
+                        Timer1.Interval = 3600000
+                        Timer1.Start()
+                    End If
+                Else
+                    GunaGoogleSwitch2.Checked = False
+                    ComboBox4.Hide()
+                End If
+            End If
+        End If
+
+        Dim a256a() As String = File.ReadAllLines(théme)
+        If a256a(0) = 0 Then
+            ComboBox5.SelectedItem = "Claire"
+        Else
+            ComboBox5.SelectedItem = "Sombre"
+        End If
+
+        If File.Exists(dosconnextion & "/compte.txt") = True Then
+            Dim dsddsa() As String = File.ReadAllLines(dosconnextion & "/compte.txt")
+            If dsddsa(0) = "" Then
+
+            Else
+                My.Computer.Network.DownloadFile(ipsite & "/CLM/utilisateur/" & dsddsa(0) & "/mdp.txt", dosconnextion & "/mdp.txt")
+                Dim dsddsa2() As String = File.ReadAllLines(dosconnextion & "/mdp.txt")
+                File.Delete(dosconnextion & "/mdp.txt")
+                If dsddsa(1) = dsddsa2(0) Then
+                    GroupBox7.Text = "Paramètres du compte: " & dsddsa(0)
+                    Label28.Text = "Nom du compte: " & dsddsa(0)
+                    My.Computer.Network.DownloadFile(ipsite & "/CLM/utilisateur/" & dsddsa(0) & "/grade.txt", dosconnextion & "/grade.txt")
+                    Dim dsddsa3() As String = File.ReadAllLines(dosconnextion & "/grade.txt")
+                    File.Delete(dosconnextion & "/grade.txt")
+                    If dsddsa3(0) = 1 Then
+                        Label29.Text = "Grade du compte: uploader"
+                    ElseIf dsddsa3(0) = 2 Then
+                        Label29.Text = "Grade du compte: Administrateur"
+                    End If
+                    Try
+                        My.Computer.Network.DownloadFile(ipsite & "/CLM/utilisateur/" & dsddsa(0) & "/mail.txt", dosconnextion & "/mail.txt")
+                        File.Delete(dosconnextion & "/mail.txt")
+                    Catch ex As Exception
+                        GunaAdvenceButton6.Enabled = False
+                    End Try
+                Else
+
+                End If
+            End If
+        End If
         Dim fwr As FtpWebRequest
-        fwr = FtpWebRequest.Create(ipserveur & "/CLM/logiciel/profil/default/categorie/")
+        fwr = FtpWebRequest.Create(ipserveur & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/")
         fwr.Credentials = New NetworkCredential(CLMid, CLMpass)
         fwr.Method = WebRequestMethods.Ftp.ListDirectory
         Dim sr As New StreamReader(fwr.GetResponse().GetResponseStream())
@@ -90,14 +421,80 @@ Public Class Form1
 
             ComboBox1.Items.Add(str)
 
+
             str = sr.ReadLine()
 
         End While
         sr.Close()
+
         ComboBox1.Items.Add("tout")
         ComboBox1.Items.Remove("index.html")
         ComboBox1.SelectedItem = "tout"
         NotifyIcon1.Text = nom
+        Label18.Text = "Nom de l'instance: " & nom
+        Label19.Text = "Version de l'instance: " & versionlogi
+        Label20.Text = "Profils: " & CLMprofil
+        My.Computer.Network.DownloadFile(ipsite & "/CLM/organisation/nom.txt", dosrepertoire & "nom.txt")
+        My.Computer.Network.DownloadFile(ipsite & "/CLM/organisation/site.txt", dosrepertoire & "site.txt")
+        My.Computer.Network.DownloadFile(ipsite & "/CLM/organisation/logo.jpg", dosrepertoire & "logo.jpg")
+        Dim lines2az() As String = File.ReadAllLines(dosrepertoire & "nom.txt")
+        Dim lines3az() As String = File.ReadAllLines(dosrepertoire & "site.txt")
+        PictureBox29.Image = Image.FromFile(dosrepertoire & "logo.jpg")
+        GunaAdvenceButton3.Image = PictureBox29.Image
+        Label22.Text = "Nom de l'organisation: " & lines2az(0)
+        siteorganisation = lines3az(0)
+        File.Delete(dosrepertoire & "nom.txt")
+        File.Delete(dosrepertoire & "site.txt")
+        Label23.Text = "Démarer " & nom & " avec Windows"
+
+        Dim fwr2 As FtpWebRequest
+        fwr2 = FtpWebRequest.Create(ipserveur & "/CLM/logiciel/profil/")
+        fwr2.Credentials = New NetworkCredential(CLMid, CLMpass)
+        fwr2.Method = WebRequestMethods.Ftp.ListDirectory
+        Dim sr2 As New StreamReader(fwr2.GetResponse().GetResponseStream())
+
+        Dim str2 As String = sr2.ReadLine()
+        While Not str2 Is Nothing
+
+            ComboBox3.Items.Add(str2)
+
+            str2 = sr2.ReadLine()
+
+
+        End While
+        sr2.Close()
+        ComboBox3.Items.Remove("index.html")
+        ComboBox3.SelectedItem = CLMprofil
+
+        Dim fichierok = 0
+        Dim fwr3 As FtpWebRequest
+        fwr3 = FtpWebRequest.Create(ipserveur & "/CLM/logiciel/profil/" & CLMprofil & "/")
+        fwr3.Credentials = New NetworkCredential(CLMid, CLMpass)
+        fwr3.Method = WebRequestMethods.Ftp.ListDirectory
+        Dim sr3 As New StreamReader(fwr3.GetResponse().GetResponseStream())
+
+        Dim str3 As String = sr3.ReadLine()
+        While Not str3 Is Nothing
+
+
+            If str3.Contains("fichier") = True Then
+                fichierok = 1
+            Else
+
+            End If
+
+            str3 = sr3.ReadLine()
+
+
+        End While
+        sr3.Close()
+
+        If fichierok = 1 Then
+
+        Else
+            ChromeTabcontrol1.TabPages.Remove(TabPage6)
+        End If
+
         vérifiinstall()
     End Sub
 
@@ -727,6 +1124,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        PictureBox29.Image.Dispose()
+        File.Delete(dosrepertoire & "/logo.jpg")
         If nbimage = 1 Then
             PictureBox2.Image.Dispose()
         ElseIf nbimage = 2 Then
@@ -794,6 +1193,11 @@ Public Class Form1
             PictureBox11.Image.Dispose()
         End If
 
+        If nbmiage2 = 1 Then
+            PictureBox12.Image.Dispose()
+            PictureBox12.Hide()
+        End If
+
         For Each fichier As String In IO.Directory.GetFiles(dostemp)
             Dim info As New IO.FileInfo(fichier)
             File.Delete(fichier)
@@ -827,6 +1231,14 @@ Public Class Form1
         End If
     End Sub
     Sub vérifiinstall()
+        ComboBox2.Items.Clear()
+
+        For Each fichier As String In IO.Directory.GetDirectories(dosprogramefile)
+            Dim info As New IO.FileInfo(fichier)
+            ComboBox2.Items.Add(info.Name)
+        Next
+
+
         Dim lines1() As String = File.ReadAllLines(dosinstall & "/page.txt")
         Label2.Text = pagesacctuel2 & "/" & lines1(0)
         Dim lines2() As String = File.ReadAllLines(dosinstall & "/page1/logi.txt")
@@ -1126,16 +1538,27 @@ Public Class Form1
     End Sub
 
     Private Sub PictureBox12_Click(sender As Object, e As EventArgs) Handles PictureBox12.Click
-        Dim lines1() As String = File.ReadAllLines(dosinstall & "/page" & pagesacctuel2 & "/image/lient1.txt")
-        Dim lines2() As String = File.ReadAllLines(lines1(0) & "/nom.txt")
-        Form8.Text = nom & " / " & lines2(0)
-        Form8.Label2.Text = lines2(0)
-        Dim lines3() As String = File.ReadAllLines(dosprogramefile & "/" & lines2(0) & "/version.txt")
-        Form8.Label4.Text = lines3(0)
-        Form8.GunaButton1.Text = "Ouvrir: " & lines2(0)
-        Form8.GunaButton2.Text = "Désinstaller: " & lines2(0)
-        Form8.PictureBox1.Image = PictureBox12.Image
-        Form8.ShowDialog()
+        If recherche = 1 Then
+            Form8.Text = nom & " / " & ComboBox2.SelectedItem
+            Form8.Label2.Text = ComboBox2.SelectedItem
+            Dim lines3() As String = File.ReadAllLines(dosprogramefile & "/" & ComboBox2.SelectedItem & "/version.txt")
+            Form8.Label4.Text = lines3(0)
+            Form8.GunaButton1.Text = "Ouvrir: " & ComboBox2.SelectedItem
+            Form8.GunaButton2.Text = "Désinstaller: " & ComboBox2.SelectedItem
+            Form8.PictureBox1.Image = PictureBox12.Image
+            Form8.ShowDialog()
+        Else
+            Dim lines1() As String = File.ReadAllLines(dosinstall & "/page" & pagesacctuel2 & "/image/lient1.txt")
+            Dim lines2() As String = File.ReadAllLines(lines1(0) & "/nom.txt")
+            Form8.Text = nom & " / " & lines2(0)
+            Form8.Label2.Text = lines2(0)
+            Dim lines3() As String = File.ReadAllLines(dosprogramefile & "/" & lines2(0) & "/version.txt")
+            Form8.Label4.Text = lines3(0)
+            Form8.GunaButton1.Text = "Ouvrir: " & lines2(0)
+            Form8.GunaButton2.Text = "Désinstaller: " & lines2(0)
+            Form8.PictureBox1.Image = PictureBox12.Image
+            Form8.ShowDialog()
+        End If
     End Sub
 
     Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
@@ -2808,6 +3231,7 @@ Public Class Form1
         End If
 
         ListBox2.Items.Clear()
+        ListBox4.Items.Clear()
 
         For Each fichier As String In IO.Directory.GetDirectories(dosprogramefile)
             Dim info As New IO.FileInfo(fichier)
@@ -2825,6 +3249,7 @@ Public Class Form1
             Button5.Enabled = False
             Button6.Enabled = False
         Else
+            GunaButton5.Show()
             Label17.Hide()
             nmlogup = 0
             Dim i As Integer = 0
@@ -2837,6 +3262,7 @@ Public Class Form1
                 If lines1(0) = vri2 Then
 
                 Else
+                    ListBox4.Items.Add(ListBox2.SelectedItem)
                     nmlogup = nmlogup + 1
                     Dim CLMpronom = ListBox2.SelectedItem.ToString.Replace(dosprogramefile, "")
 
@@ -2893,7 +3319,7 @@ Public Class Form1
                 TabPage3.Text = "Mise a jour (" & nmlogup & ")"
                 GunaButton5.Text = "Mètre à jour le logiciel"
                 NotifyIcon1.BalloonTipTitle = "Mise a jour disponible"
-                NotifyIcon1.Text = nom & ": Unemise a jour disponible"
+                NotifyIcon1.Text = nom & ": Une mise a jour disponible"
                 NotifyIcon1.BalloonTipText = "une mise a jour est disponible"
                 NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
                 NotifyIcon1.ShowBalloonTip(1)
@@ -3154,11 +3580,6 @@ Public Class Form1
         End If
         nbmiage3 = ListBox3.Items.Count
     End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        updatelogi()
-    End Sub
-
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         pagesacctuel3 = pagesacctuel3 + 1
         teste()
@@ -3196,6 +3617,8 @@ Public Class Form1
             ProgressBar3.Value = e.ProgressPercentage
         ElseIf updategroup = 4 Then
             ProgressBar4.Value = e.ProgressPercentage
+        ElseIf updategroup = 0 Then
+            ProgressBar5.Value = e.ProgressPercentage
         End If
     End Sub
 
@@ -3208,6 +3631,8 @@ Public Class Form1
             ProgressBar3.Style = ProgressBarStyle.Marquee
         ElseIf updategroup = 4 Then
             ProgressBar4.Style = ProgressBarStyle.Marquee
+        ElseIf updategroup = 0 Then
+            ProgressBar5.Style = ProgressBarStyle.Marquee
         End If
         BackgroundWorker1.RunWorkerAsync()
     End Sub
@@ -3227,6 +3652,9 @@ Public Class Form1
         ElseIf updategroup = 4 Then
             My.Computer.FileSystem.DeleteDirectory(dosprogramefile & "/" & GroupBox4.Text & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
             ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", dosprogramefile & "/" & GroupBox4.Text & "/programe/")
+        ElseIf updategroup = 0 Then
+            My.Computer.FileSystem.DeleteDirectory(select4update & "/programe/", FileIO.DeleteDirectoryOption.DeleteAllContents)
+            ZipFile.ExtractToDirectory(dosprogramefile & "\programe.zip", select4update & "/programe/")
         End If
     End Sub
 
@@ -3271,6 +3699,11 @@ Public Class Form1
             GroupBox3.Enabled = True
             MsgBox("Le logiciel: " & GroupBox4.Text & " a bien êtê mis a jour", MsgBoxStyle.Information)
             updatelogi()
+        ElseIf updategroup = 0 Then
+            File.Delete(dosprogramefile & "\programe.zip")
+            ProgressBar5.Style = ProgressBarStyle.Continuous
+            ProgressBar5.Value = 0
+            updateauto()
         End If
     End Sub
 
@@ -3326,5 +3759,345 @@ Public Class Form1
         File.Delete(dostemp & "/versionactuel.txt")
         téléchargerfr = New WebClient
         téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
+    End Sub
+
+    Private Sub GunaButton5_Click(sender As Object, e As EventArgs) Handles GunaButton5.Click
+        GroupBox1.Enabled = False
+        GroupBox2.Enabled = False
+        GroupBox3.Enabled = False
+        GroupBox4.Enabled = False
+        ProgressBar5.Show()
+        GunaButton5.Hide()
+        updategroup = 0
+        updateauto()
+    End Sub
+    Sub updateauto()
+        updateautovar = updateautovar + 1
+        If updateautovar <= ListBox4.Items.Count - 1 Then
+            ListBox4.SetSelected(updateautovar, True)
+            Dim lines1() As String = File.ReadAllLines(ListBox4.SelectedItem & "/updatedl.txt")
+            My.Computer.Network.DownloadFile(lines1(0) & "/version/versionactuel.txt", dostemp & "/versionactuel.txt")
+            Dim lines2() As String = File.ReadAllLines(dostemp & "/versionactuel.txt")
+            Dim sw1 As New StreamWriter(ListBox4.SelectedItem.ToString & "\version.txt")
+            sw1.WriteLine(lines2(0))
+            sw1.Close()
+            File.Delete(dostemp & "/versionactuel.txt")
+            select4update = ListBox4.SelectedItem.ToString
+            téléchargerfr = New WebClient
+            téléchargerfr.DownloadFileTaskAsync(New Uri(lines1(0) & "/version/" & lines2(0) & "/programe.zip"), (dosprogramefile & "\programe.zip"))
+        Else
+            GroupBox1.Enabled = True
+            GroupBox2.Enabled = True
+            GroupBox3.Enabled = True
+            GroupBox4.Enabled = True
+            GunaButton5.Show()
+            ProgressBar5.Hide()
+            updateautovar = -1
+            select4update = ""
+            MsgBox("Tout le logiciel est bien êtê mis a jour", MsgBoxStyle.Information)
+            updatelogi()
+        End If
+    End Sub
+
+    Private Sub PictureBox27_Click(sender As Object, e As EventArgs) Handles PictureBox27.Click
+        updatelogi()
+    End Sub
+
+    Private Sub PictureBox22_Click(sender As Object, e As EventArgs) Handles PictureBox22.Click
+        PictureBox12.Image.Dispose()
+        PictureBox12.Hide()
+        If File.Exists(dostemp & "/image.jpg") = True Then
+            File.Delete(dostemp & "/image.jpg")
+        End If
+        ComboBox2.Text = ""
+        vérifiinstall()
+    End Sub
+
+    Private Sub ComboBox2_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedValueChanged
+        PictureBox12.Image.Dispose()
+        PictureBox12.Hide()
+        If File.Exists(dostemp & "/image.jpg") = True Then
+            File.Delete(dostemp & "/image.jpg")
+        End If
+        recherche = 1
+        If nbmiage2 = 1 Then
+            PictureBox12.Image.Dispose()
+        ElseIf nbmiage2 = 2 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+        ElseIf nbmiage2 = 3 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+        ElseIf nbmiage2 = 4 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+        ElseIf nbmiage2 = 5 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+        ElseIf nbmiage2 = 6 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+            PictureBox17.Image.Dispose()
+        ElseIf nbmiage2 = 7 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+            PictureBox17.Image.Dispose()
+            PictureBox18.Image.Dispose()
+        ElseIf nbmiage2 = 8 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+            PictureBox17.Image.Dispose()
+            PictureBox18.Image.Dispose()
+            PictureBox19.Image.Dispose()
+        ElseIf nbmiage2 = 9 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+            PictureBox17.Image.Dispose()
+            PictureBox18.Image.Dispose()
+            PictureBox19.Image.Dispose()
+            PictureBox20.Image.Dispose()
+        ElseIf nbmiage2 = 10 Then
+            PictureBox12.Image.Dispose()
+            PictureBox13.Image.Dispose()
+            PictureBox14.Image.Dispose()
+            PictureBox15.Image.Dispose()
+            PictureBox16.Image.Dispose()
+            PictureBox17.Image.Dispose()
+            PictureBox18.Image.Dispose()
+            PictureBox19.Image.Dispose()
+            PictureBox20.Image.Dispose()
+            PictureBox21.Image.Dispose()
+        Else
+
+        End If
+        Dim lines1() As String = File.ReadAllLines(dosprogramefile & "/" & ComboBox2.SelectedItem & "/updatedl.txt")
+        My.Computer.Network.DownloadFile(lines1(0) & "/image.jpg", dostemp & "/image.jpg")
+        PictureBox12.Image = Image.FromFile(dostemp & "/image.jpg")
+        PictureBox12.Show()
+        PictureBox13.Hide()
+        PictureBox14.Hide()
+        PictureBox15.Hide()
+        PictureBox16.Hide()
+        PictureBox17.Hide()
+        PictureBox18.Hide()
+        PictureBox19.Hide()
+        PictureBox20.Hide()
+        PictureBox21.Hide()
+        nbmiage2 = 1
+    End Sub
+
+    Private Sub GunaAdvenceButton2_Click(sender As Object, e As EventArgs) Handles GunaAdvenceButton2.Click, GunaAdvenceButton4.Click
+        Process.Start("https://github.com/yoannmultigaming/CLM")
+    End Sub
+
+    Private Sub GunaAdvenceButton3_Click(sender As Object, e As EventArgs) Handles GunaAdvenceButton3.Click
+        Process.Start(siteorganisation)
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Timer1.Stop()
+        Timer1.Start()
+        updatelogi()
+    End Sub
+
+    Private Sub GunaGoogleSwitch1_CheckedChanged(sender As Object, e As EventArgs) Handles GunaGoogleSwitch1.CheckedChanged
+        Dim statwindows As Integer = 0
+        Dim registry As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser
+        Dim mer As Integer = 0
+        Dim key As Microsoft.Win32.RegistryKey = registry.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Run", True)
+        Dim vreg = Nothing
+
+        If key.GetValue(Application.ProductName) Is Nothing Then
+            vreg = 0
+        Else
+            vreg = 1
+        End If
+
+        If GunaGoogleSwitch1.Checked = True Then
+            statwindows = 1
+            If vreg = 0 Then
+                key.SetValue(Application.ProductName, Application.ExecutablePath, Microsoft.Win32.RegistryValueKind.String)
+            End If
+        Else
+            statwindows = 0
+            If vreg = 1 Then
+                key.DeleteValue(Application.ProductName)
+            End If
+        End If
+
+        Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+        Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+        sw1.WriteLine(statwindows)
+        sw1.WriteLine(lines1(1))
+        sw1.WriteLine(lines1(2))
+        sw1.Close()
+    End Sub
+
+    Private Sub GunaGoogleSwitch2_CheckedChanged(sender As Object, e As EventArgs) Handles GunaGoogleSwitch2.CheckedChanged
+        If GunaGoogleSwitch2.Checked = True Then
+            ComboBox4.Show()
+            ComboBox4.SelectedItem = "5 Minutes"
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(1)
+            sw1.WriteLine(lines1(2))
+            sw1.Close()
+        Else
+            Timer1.Stop()
+            ComboBox4.Hide()
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(0)
+            sw1.WriteLine(5)
+            sw1.Close()
+        End If
+    End Sub
+
+    Private Sub ComboBox4_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedValueChanged
+        If ComboBox4.SelectedItem = "5 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(5)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 300000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "10 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(10)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 600000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "15 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(15)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 900000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "20 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(20)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 1200000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "25 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(25)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 1500000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "30 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(30)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 1800000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "35 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(35)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 2100000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "40 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(40)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 2400000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "45 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(45)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 2700000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "50 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(50)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 3000000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "55 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(55)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 3300000
+            Timer1.Start()
+        ElseIf ComboBox4.SelectedItem = "60 Minutes" Then
+            Dim lines1() As String = File.ReadAllLines(dosconfig & "/config.txt")
+            Dim sw1 As New StreamWriter(dosconfig & "/config.txt")
+            sw1.WriteLine(lines1(0))
+            sw1.WriteLine(lines1(1))
+            sw1.WriteLine(60)
+            sw1.Close()
+            Timer1.Stop()
+            Timer1.Interval = 3600000
+            Timer1.Start()
+        End If
+    End Sub
+
+    Private Sub GunaAdvenceButton7_Click(sender As Object, e As EventArgs) Handles GunaAdvenceButton7.Click
+        Form9.ShowDialog()
     End Sub
 End Class

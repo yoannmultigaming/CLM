@@ -24,6 +24,10 @@ Public NotInheritable Class SplashScreen1
             Directory.CreateDirectory(dosprogramefile)
         End If
 
+        If Directory.Exists(dosconfig) = False Then
+            Directory.CreateDirectory(dosconfig)
+        End If
+
         If Directory.Exists(dosthéme) = False Then
             Directory.CreateDirectory(dosthéme)
             Dim sw1 As New StreamWriter(théme)
