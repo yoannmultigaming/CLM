@@ -1,11 +1,9 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
-Imports System.Management
 Imports System.Net
 Imports System.Net.Mail
 Imports System.Security.Cryptography
 Imports System.Text
-Imports System.Windows.Forms.ComponentModel.Com2Interop
 
 
 Public Class Form9
@@ -20,6 +18,9 @@ Public Class Form9
     Dim mdcuser As Integer = 0
     Dim mdouser As Integer = 0
     Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Label32.Text = "Démarer " & nom & " avec Windows"
+        GunaGoogleSwitch2.Checked = True
+        GunaGoogleSwitch3.Checked = True
         GroupBox3.Hide()
         TextBox10.UseSystemPasswordChar = True
         TextBox11.UseSystemPasswordChar = True
@@ -887,6 +888,89 @@ Public Class Form9
                     MsgBox("Une erreur est survenue (il est possible que la catégorie: " & TextBox18.Text & " exsite déjà)", MsgBoxStyle.Exclamation, nom & " / modifier une catégorie")
                 End Try
             End If
+        End If
+    End Sub
+
+    Private Sub GunaGoogleSwitch3_CheckedChanged(sender As Object, e As EventArgs) Handles GunaGoogleSwitch3.CheckedChanged
+        If GunaGoogleSwitch3.Checked = True Then
+            ComboBox8.SelectedItem = "5 Minutes"
+        End If
+    End Sub
+
+    Private Sub TextBox19_TextChanged(sender As Object, e As EventArgs) Handles TextBox19.TextChanged
+        GroupBox7.Text = "Configuration du profil: " & TextBox19.Text
+        GunaButton7.Text = "Créer le profil: " & TextBox19.Text
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        If TextBox17.Text = "" Or TextBox17.Text = "tout" Then
+            MsgBox("Merci d'entrer une nom valide pour la catégorie", MsgBoxStyle.Critical, nom & " / ajouter un catégorie")
+        Else
+            Try
+                Dim MaRequete As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create(CLMPipserveur & "/CLM/logiciel/profil/" & ComboBox5.SelectedItem & "/categorie/" & TextBox17.Text & "/"), System.Net.FtpWebRequest)
+                Dim ftpStream As Stream = Nothing
+
+                MaRequete.Credentials = New System.Net.NetworkCredential(CLMid, CLMpass)
+                MaRequete.Method = System.Net.WebRequestMethods.Ftp.MakeDirectory
+
+                Dim response As FtpWebResponse = CType(MaRequete.GetResponse, FtpWebResponse)
+                ftpStream = response.GetResponseStream
+                ftpStream.Close()
+                response.Close()
+                Dim sw1 As New StreamWriter(dosrepertoire & "\page.txt")
+                sw1.WriteLine(1)
+                sw1.Close()
+                My.Computer.Network.UploadFile(dosrepertoire & "\page.txt", CLMPipserveur & "/CLM/logiciel/profil/" & ComboBox5.SelectedItem & "/categorie/" & TextBox17.Text & "/page.txt")
+                File.Delete(dosrepertoire & "\page.txt")
+
+                Dim MaRequete2 As System.Net.FtpWebRequest = DirectCast(System.Net.WebRequest.Create(CLMPipserveur & "/CLM/logiciel/profil/" & ComboBox5.SelectedItem & "/categorie/" & TextBox17.Text & "/page1/"), System.Net.FtpWebRequest)
+                Dim ftpStream2 As Stream = Nothing
+
+                MaRequete2.Credentials = New System.Net.NetworkCredential(CLMid, CLMpass)
+                MaRequete2.Method = System.Net.WebRequestMethods.Ftp.MakeDirectory
+
+                Dim response2 As FtpWebResponse = CType(MaRequete2.GetResponse, FtpWebResponse)
+                ftpStream2 = response2.GetResponseStream
+                ftpStream2.Close()
+                response2.Close()
+
+                Dim sw2 As New StreamWriter(dosrepertoire & "\logi.txt")
+                sw2.WriteLine(0)
+                sw2.Close()
+                My.Computer.Network.UploadFile(dosrepertoire & "\logi.txt", CLMPipserveur & "/CLM/logiciel/profil/" & ComboBox5.SelectedItem & "/categorie/" & TextBox17.Text & "/page1/logi.txt")
+                File.Delete(dosrepertoire & "\logi.txt")
+                MsgBox("Le catégorie: " & TextBox17.Text & " a bien êtê créer pour le profil: " & ComboBox5.SelectedItem, MsgBoxStyle.Information, nom & " / ajouter un catégorie")
+
+
+                ListBox2.Items.Clear()
+                ComboBox6.Items.Clear()
+                ComboBox7.Items.Clear()
+                Dim fwr As FtpWebRequest
+                fwr = FtpWebRequest.Create(CLMPipserveur & "/CLM/logiciel/profil/" & ComboBox5.SelectedItem & "/categorie/")
+                fwr.Credentials = New NetworkCredential(CLMid, CLMpass)
+                fwr.Method = WebRequestMethods.Ftp.ListDirectory
+                Dim sr As New StreamReader(fwr.GetResponse().GetResponseStream())
+
+                Dim str As String = sr.ReadLine()
+                While Not str Is Nothing
+
+                    ListBox2.Items.Add(str)
+                    ComboBox6.Items.Add(str)
+                    ComboBox7.Items.Add(str)
+
+
+                    str = sr.ReadLine()
+
+                End While
+
+                ListBox2.Items.Remove("index.html")
+                ComboBox6.Items.Remove("index.html")
+                ComboBox7.Items.Remove("index.html")
+                sr.Close()
+                TextBox17.Clear()
+            Catch ex As Exception
+                MsgBox("Une erreur est survenue (il est possible que la catégorie: " & TextBox17.Text & " existe déjà)", MsgBoxStyle.Exclamation, nom & " / ajouter un catégorie")
+            End Try
         End If
     End Sub
 End Class

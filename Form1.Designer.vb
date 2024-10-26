@@ -136,6 +136,7 @@ Partial Class Form1
         Me.PictureBox29 = New System.Windows.Forms.PictureBox()
         Me.GunaAdvenceButton3 = New Guna.UI.WinForms.GunaAdvenceButton()
         Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.ChromeTabcontrol1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,6 +220,7 @@ Partial Class Form1
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.White
+        Me.TabPage1.Controls.Add(Me.Label30)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.PictureBox9)
         Me.TabPage1.Controls.Add(Me.PictureBox8)
@@ -1615,6 +1617,17 @@ Partial Class Form1
         Me.Label22.TabIndex = 1
         Me.Label22.Text = "Nom de l'organisation:"
         '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(195, 213)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(318, 18)
+        Me.Label30.TabIndex = 25
+        Me.Label30.Text = "Aucun logiciel n'est installé sur cette machine"
+        Me.Label30.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1798,4 +1811,5 @@ Partial Class Form1
     Friend WithEvents GunaAdvenceButton6 As Guna.UI.WinForms.GunaAdvenceButton
     Friend WithEvents GunaAdvenceButton5 As Guna.UI.WinForms.GunaAdvenceButton
     Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents Label30 As Label
 End Class

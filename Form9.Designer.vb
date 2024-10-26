@@ -84,6 +84,18 @@ Partial Class Form9
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.ChromeTabcontrol3 = New CLM.ChromeTabcontrol()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
+        Me.GunaButton7 = New Guna.UI.WinForms.GunaButton()
+        Me.TextBox19 = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.ComboBox8 = New System.Windows.Forms.ComboBox()
+        Me.GunaGoogleSwitch4 = New Guna.UI.WinForms.GunaGoogleSwitch()
+        Me.GunaGoogleSwitch3 = New Guna.UI.WinForms.GunaGoogleSwitch()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.GunaGoogleSwitch2 = New Guna.UI.WinForms.GunaGoogleSwitch()
+        Me.Label32 = New System.Windows.Forms.Label()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -143,6 +155,9 @@ Partial Class Form9
         Me.TabPage8.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.ChromeTabcontrol3.SuspendLayout()
+        Me.TabPage9.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage10.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -840,12 +855,157 @@ Partial Class Form9
         'TabPage9
         '
         Me.TabPage9.BackColor = System.Drawing.Color.White
+        Me.TabPage9.Controls.Add(Me.GunaButton7)
+        Me.TabPage9.Controls.Add(Me.TextBox19)
+        Me.TabPage9.Controls.Add(Me.Label31)
+        Me.TabPage9.Controls.Add(Me.GroupBox7)
         Me.TabPage9.Location = New System.Drawing.Point(119, 4)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage9.Size = New System.Drawing.Size(586, 438)
         Me.TabPage9.TabIndex = 0
         Me.TabPage9.Text = "Ajouter"
+        '
+        'GunaButton7
+        '
+        Me.GunaButton7.AnimationHoverSpeed = 0.07!
+        Me.GunaButton7.AnimationSpeed = 0.03!
+        Me.GunaButton7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.BaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.GunaButton7.FocusedColor = System.Drawing.Color.Empty
+        Me.GunaButton7.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.GunaButton7.ForeColor = System.Drawing.Color.White
+        Me.GunaButton7.Image = CType(resources.GetObject("GunaButton7.Image"), System.Drawing.Image)
+        Me.GunaButton7.ImageSize = New System.Drawing.Size(20, 20)
+        Me.GunaButton7.Location = New System.Drawing.Point(6, 257)
+        Me.GunaButton7.Name = "GunaButton7"
+        Me.GunaButton7.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.OnHoverForeColor = System.Drawing.Color.White
+        Me.GunaButton7.OnHoverImage = Nothing
+        Me.GunaButton7.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaButton7.Size = New System.Drawing.Size(572, 42)
+        Me.GunaButton7.TabIndex = 3
+        Me.GunaButton7.Text = "Créer le profil:"
+        '
+        'TextBox19
+        '
+        Me.TextBox19.Location = New System.Drawing.Point(113, 6)
+        Me.TextBox19.Name = "TextBox19"
+        Me.TextBox19.Size = New System.Drawing.Size(467, 26)
+        Me.TextBox19.TabIndex = 2
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(5, 9)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(104, 18)
+        Me.Label31.TabIndex = 0
+        Me.Label31.Text = "Nom du profil:"
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.PictureBox6)
+        Me.GroupBox7.Controls.Add(Me.ComboBox8)
+        Me.GroupBox7.Controls.Add(Me.GunaGoogleSwitch4)
+        Me.GroupBox7.Controls.Add(Me.GunaGoogleSwitch3)
+        Me.GroupBox7.Controls.Add(Me.Label34)
+        Me.GroupBox7.Controls.Add(Me.Label33)
+        Me.GroupBox7.Controls.Add(Me.GunaGoogleSwitch2)
+        Me.GroupBox7.Controls.Add(Me.Label32)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 38)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(574, 213)
+        Me.GroupBox7.TabIndex = 1
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Configuration du profil:"
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
+        Me.PictureBox6.Location = New System.Drawing.Point(219, 174)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(38, 34)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox6.TabIndex = 7
+        Me.PictureBox6.TabStop = False
+        '
+        'ComboBox8
+        '
+        Me.ComboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox8.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ComboBox8.FormattingEnabled = True
+        Me.ComboBox8.Items.AddRange(New Object() {"5 Minutes", "10 Minutes", "15 Minutes", "20 Minutes", "25 Minutes", "30 Minutes", "35 Minutes", "40 Minutes", "45 Minutes", "50 Minutes", "55 Minutes", "60 Minutes"})
+        Me.ComboBox8.Location = New System.Drawing.Point(305, 55)
+        Me.ComboBox8.Name = "ComboBox8"
+        Me.ComboBox8.Size = New System.Drawing.Size(121, 26)
+        Me.ComboBox8.TabIndex = 6
+        '
+        'GunaGoogleSwitch4
+        '
+        Me.GunaGoogleSwitch4.BaseColor = System.Drawing.SystemColors.Control
+        Me.GunaGoogleSwitch4.CheckedOffColor = System.Drawing.Color.DarkGray
+        Me.GunaGoogleSwitch4.CheckedOnColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaGoogleSwitch4.FillColor = System.Drawing.Color.White
+        Me.GunaGoogleSwitch4.Location = New System.Drawing.Point(6, 181)
+        Me.GunaGoogleSwitch4.Name = "GunaGoogleSwitch4"
+        Me.GunaGoogleSwitch4.Size = New System.Drawing.Size(38, 20)
+        Me.GunaGoogleSwitch4.TabIndex = 4
+        '
+        'GunaGoogleSwitch3
+        '
+        Me.GunaGoogleSwitch3.BaseColor = System.Drawing.SystemColors.Control
+        Me.GunaGoogleSwitch3.CheckedOffColor = System.Drawing.Color.DarkGray
+        Me.GunaGoogleSwitch3.CheckedOnColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaGoogleSwitch3.FillColor = System.Drawing.Color.White
+        Me.GunaGoogleSwitch3.Location = New System.Drawing.Point(6, 58)
+        Me.GunaGoogleSwitch3.Name = "GunaGoogleSwitch3"
+        Me.GunaGoogleSwitch3.Size = New System.Drawing.Size(38, 20)
+        Me.GunaGoogleSwitch3.TabIndex = 4
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(50, 181)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(169, 18)
+        Me.Label34.TabIndex = 5
+        Me.Label34.Text = "Blocker les paramètres"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Location = New System.Drawing.Point(50, 58)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(249, 18)
+        Me.Label33.TabIndex = 5
+        Me.Label33.Text = "Rechercher les mis a jour toute les:"
+        '
+        'GunaGoogleSwitch2
+        '
+        Me.GunaGoogleSwitch2.BaseColor = System.Drawing.SystemColors.Control
+        Me.GunaGoogleSwitch2.CheckedOffColor = System.Drawing.Color.DarkGray
+        Me.GunaGoogleSwitch2.CheckedOnColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GunaGoogleSwitch2.FillColor = System.Drawing.Color.White
+        Me.GunaGoogleSwitch2.Location = New System.Drawing.Point(6, 25)
+        Me.GunaGoogleSwitch2.Name = "GunaGoogleSwitch2"
+        Me.GunaGoogleSwitch2.Size = New System.Drawing.Size(38, 20)
+        Me.GunaGoogleSwitch2.TabIndex = 2
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label32.Location = New System.Drawing.Point(50, 25)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(65, 18)
+        Me.Label32.TabIndex = 3
+        Me.Label32.Text = "Label32"
         '
         'TabPage10
         '
@@ -1353,6 +1513,11 @@ Partial Class Form9
         Me.TabPage8.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.ChromeTabcontrol3.ResumeLayout(False)
+        Me.TabPage9.ResumeLayout(False)
+        Me.TabPage9.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage10.ResumeLayout(False)
         Me.TabPage10.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -1474,4 +1639,16 @@ Partial Class Form9
     Friend WithEvents TextBox18 As TextBox
     Friend WithEvents ComboBox7 As ComboBox
     Friend WithEvents Button13 As Button
+    Friend WithEvents GunaButton7 As Guna.UI.WinForms.GunaButton
+    Friend WithEvents TextBox19 As TextBox
+    Friend WithEvents Label31 As Label
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents GunaGoogleSwitch2 As Guna.UI.WinForms.GunaGoogleSwitch
+    Friend WithEvents Label32 As Label
+    Friend WithEvents ComboBox8 As ComboBox
+    Friend WithEvents GunaGoogleSwitch4 As Guna.UI.WinForms.GunaGoogleSwitch
+    Friend WithEvents GunaGoogleSwitch3 As Guna.UI.WinForms.GunaGoogleSwitch
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents PictureBox6 As PictureBox
 End Class

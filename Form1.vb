@@ -656,6 +656,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 2 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -671,6 +672,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 3 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -688,6 +690,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 4 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -707,6 +710,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 5 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -728,6 +732,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 6 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -751,6 +756,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 7 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -776,6 +782,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 8 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -803,6 +810,7 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 9 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -832,6 +840,7 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Show()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 10 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/tout/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -863,6 +872,10 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Show()
                 PictureBox11.Show()
+                Label30.Hide()
+            Else
+                Label30.Show()
+                Label30.Text = "Aucun logiciel n'est disponible"
             End If
         Else
             If nbimage = 1 Then
@@ -965,6 +978,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 2 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -980,6 +994,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 3 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -997,6 +1012,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 4 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1016,6 +1032,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 5 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1037,6 +1054,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 6 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1060,6 +1078,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 7 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1085,6 +1104,7 @@ Public Class Form1
                 PictureBox9.Hide()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 8 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1112,6 +1132,7 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Hide()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 9 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1141,6 +1162,7 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Show()
                 PictureBox11.Hide()
+                Label30.Hide()
             ElseIf vri2 = 10 Then
                 My.Computer.Network.DownloadFile(CLMipsite & "/CLM/logiciel/profil/" & CLMprofil & "/categorie/" & ComboBox1.SelectedItem & "/page" & pagesacctuel & "/logi1/image.jpg", dostemp & "/image1.jpg")
                 PictureBox2.Image = Image.FromFile(dostemp & "/image1.jpg")
@@ -1172,6 +1194,20 @@ Public Class Form1
                 PictureBox9.Show()
                 PictureBox10.Show()
                 PictureBox11.Show()
+                Label30.Hide()
+            Else
+                PictureBox2.Hide()
+                PictureBox3.Hide()
+                PictureBox4.Hide()
+                PictureBox5.Hide()
+                PictureBox6.Hide()
+                PictureBox7.Hide()
+                PictureBox8.Hide()
+                PictureBox9.Hide()
+                PictureBox10.Hide()
+                PictureBox11.Hide()
+                Label30.Show()
+                Label30.Text = "Aucun logiciel n'est disponible dans la catégorie: " & ComboBox1.SelectedItem
             End If
         End If
     End Sub
