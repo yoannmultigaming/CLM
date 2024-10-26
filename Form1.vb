@@ -84,6 +84,51 @@ Public Class Form1
         CLMPipserveur = ipserveur
         CLMid = idftp
         CLMpass = passftp
+        Try
+            My.Computer.Network.DownloadFile(CLMipsite & "/CLM/mail/mailconfig.txt", dosrepertoire & "/mailconfig.txt")
+            Dim mailread1() As String = File.ReadAllLines(dosrepertoire & "/mailconfig.txt")
+            File.Delete(dosrepertoire & "/mailconfig.txt")
+
+            Dim Resultatbyte6() As Byte = Convert.FromBase64String(mailread1(0))
+            Dim keyBytes6() As Byte = Encoding.UTF8.GetBytes(clescrypte)
+            Dim Crypto6 As New DESCryptoServiceProvider()
+            Crypto6.Key = keyBytes6
+            Crypto6.IV = keyBytes6
+            Dim Icrypto6 As ICryptoTransform = Crypto6.CreateDecryptor()
+            Dim donné6() As Byte = Icrypto6.TransformFinalBlock(Resultatbyte6, 0, Resultatbyte6.Length)
+            CLMsmtp = Encoding.UTF8.GetString(donné6)
+
+
+            Dim Resultatbyte7() As Byte = Convert.FromBase64String(mailread1(1))
+            Dim keyBytes7() As Byte = Encoding.UTF8.GetBytes(clescrypte)
+            Dim Crypto7 As New DESCryptoServiceProvider()
+            Crypto7.Key = keyBytes7
+            Crypto7.IV = keyBytes7
+            Dim Icrypto7 As ICryptoTransform = Crypto7.CreateDecryptor()
+            Dim donné7() As Byte = Icrypto7.TransformFinalBlock(Resultatbyte7, 0, Resultatbyte7.Length)
+            CLMsmtpuser = Encoding.UTF8.GetString(donné7)
+
+            Dim Resultatbyte8() As Byte = Convert.FromBase64String(mailread1(2))
+            Dim keyBytes8() As Byte = Encoding.UTF8.GetBytes(clescrypte)
+            Dim Crypto8 As New DESCryptoServiceProvider()
+            Crypto8.Key = keyBytes8
+            Crypto8.IV = keyBytes8
+            Dim Icrypto8 As ICryptoTransform = Crypto8.CreateDecryptor()
+            Dim donné8() As Byte = Icrypto8.TransformFinalBlock(Resultatbyte8, 0, Resultatbyte8.Length)
+            CLMsmtpprot = Encoding.UTF8.GetString(donné8)
+
+            Dim Resultatbyte9() As Byte = Convert.FromBase64String(mailread1(3))
+            Dim keyBytes9() As Byte = Encoding.UTF8.GetBytes(clescrypte)
+            Dim Crypto9 As New DESCryptoServiceProvider()
+            Crypto9.Key = keyBytes9
+            Crypto9.IV = keyBytes9
+            Dim Icrypto9 As ICryptoTransform = Crypto9.CreateDecryptor()
+            Dim donné9() As Byte = Icrypto9.TransformFinalBlock(Resultatbyte9, 0, Resultatbyte9.Length)
+            CLMsmtpuserpass = Encoding.UTF8.GetString(donné9)
+        Catch ex As Exception
+
+        End Try
+
 
         My.Computer.Network.DownloadFile(ipsite & "/CLM/config/nom.txt", dosrepertoire & "/nom.txt")
         Dim nameinstance() As String = File.ReadAllLines(dosrepertoire & "/nom.txt")
@@ -396,15 +441,23 @@ Public Class Form1
                     File.Delete(dosconnextion & "/grade.txt")
                     If dsddsa3(0) = 1 Then
                         Label29.Text = "Grade du compte: uploader"
+                        GunaAdvenceButton7.Text = "Accès panel uploader"
                     ElseIf dsddsa3(0) = 2 Then
                         Label29.Text = "Grade du compte: Administrateur"
+                        GunaAdvenceButton7.Text = "Accès panel Administrateur"
                     End If
-                    Try
-                        My.Computer.Network.DownloadFile(ipsite & "/CLM/utilisateur/" & dsddsa(0) & "/mail.txt", dosconnextion & "/mail.txt")
-                        File.Delete(dosconnextion & "/mail.txt")
-                    Catch ex As Exception
+
+                    If CLMsmtp = "" Then
                         GunaAdvenceButton6.Enabled = False
-                    End Try
+                    Else
+                        Try
+                            My.Computer.Network.DownloadFile(ipsite & "/CLM/utilisateur/" & dsddsa(0) & "/mail.txt", dosconnextion & "/mail.txt")
+                            File.Delete(dosconnextion & "/mail.txt")
+                        Catch ex As Exception
+                            GunaAdvenceButton6.Enabled = True
+                            GunaAdvenceButton6.Text = "Ajouter votre mail"
+                        End Try
+                    End If
                 Else
 
                 End If

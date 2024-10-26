@@ -44,7 +44,7 @@ Public Class Form5
             SMTPServer.EnableSsl = True
             SMTPServer.Send(MyMailMessage) 'Envoi
             codegener = code
-            MsgBox("Le un mail de test à éter envoyé à " & mail, MsgBoxStyle.Information, nom & "/ configuration du service mail")
+            MsgBox("Le un mail de test à êtê envoyé à " & mail, MsgBoxStyle.Information, nom & "/ configuration du service mail")
             Dim msg = MsgBox("Avez-vous bien reçu le mail ?", MsgBoxStyle.YesNo, nom & "/ configuration du service mail")
             If msg = MsgBoxResult.Yes Then
                 etap = 1
@@ -54,7 +54,7 @@ Public Class Form5
             End If
         ElseIf etap = 1 Then
             If codegener = TextBox1.Text Then
-                Dim texteEnBytes() As Byte = Encoding.UTF8.GetBytes(usersmtp)
+                Dim texteEnBytes() As Byte = Encoding.UTF8.GetBytes(srvsmtp)
                 Dim keyBytes() As Byte = Encoding.UTF8.GetBytes(Form4.clés)
                 Dim Crypto As New DESCryptoServiceProvider()
                 Crypto.Key = keyBytes
@@ -63,7 +63,7 @@ Public Class Form5
                 Dim Resultatbytes() As Byte = Icrypto.TransformFinalBlock(texteEnBytes, 0, texteEnBytes.Length)
                 Dim srvsmtpcrypt = Convert.ToBase64String(Resultatbytes)
 
-                Dim texteEnBytes2() As Byte = Encoding.UTF8.GetBytes(srvsmtp)
+                Dim texteEnBytes2() As Byte = Encoding.UTF8.GetBytes(usersmtp)
                 Dim keyBytes2() As Byte = Encoding.UTF8.GetBytes(Form4.clés)
                 Dim Crypto2 As New DESCryptoServiceProvider()
                 Crypto2.Key = keyBytes2
@@ -94,13 +94,14 @@ Public Class Form5
                 sw1.WriteLine(srvsmtpcrypt)
                 sw1.WriteLine(usersmtpcrypt)
                 sw1.WriteLine(portsmtpcrypt)
-                sw1.WriteLine(portsmtpcrypt)
                 sw1.WriteLine(mdpsmtpcrypt)
                 sw1.Close()
 
                 My.Computer.Network.UploadFile(dosconnextion & "mailconfig.txt", Form3.ipserveur & "/CLM/mail/mailconfig.txt")
                 File.Delete(dosconnextion & "mailconfig.txt")
                 etap2()
+            Else
+                MsgBox("Le code ne correspond pas", MsgBoxStyle.Critical)
             End If
         ElseIf etap = 2 Then
             mailadmin = TextBox1.Text

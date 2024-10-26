@@ -18,4 +18,8 @@
     Public CLMid As String = ""
     Public CLMpass As String = ""
     Public CLMprofil As String = ""
+    Public CLMsmtp As String = ""
+    Public CLMsmtpprot As String = ""
+    Public CLMsmtpuser As String = ""
+    Public CLMsmtpuserpass As String = ""
 End Module

@@ -1286,7 +1286,7 @@ Partial Class Form1
         Me.GunaAdvenceButton7.Image = CType(resources.GetObject("GunaAdvenceButton7.Image"), System.Drawing.Image)
         Me.GunaAdvenceButton7.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaAdvenceButton7.LineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton7.Location = New System.Drawing.Point(479, 148)
+        Me.GunaAdvenceButton7.Location = New System.Drawing.Point(463, 160)
         Me.GunaAdvenceButton7.Name = "GunaAdvenceButton7"
         Me.GunaAdvenceButton7.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton7.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -1294,7 +1294,7 @@ Partial Class Form1
         Me.GunaAdvenceButton7.OnHoverImage = Nothing
         Me.GunaAdvenceButton7.OnHoverLineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton7.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton7.Size = New System.Drawing.Size(210, 42)
+        Me.GunaAdvenceButton7.Size = New System.Drawing.Size(221, 42)
         Me.GunaAdvenceButton7.TabIndex = 1
         Me.GunaAdvenceButton7.Text = "Accès panel Administrateur"
         '
@@ -1317,7 +1317,7 @@ Partial Class Form1
         Me.GunaAdvenceButton6.Image = CType(resources.GetObject("GunaAdvenceButton6.Image"), System.Drawing.Image)
         Me.GunaAdvenceButton6.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaAdvenceButton6.LineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton6.Location = New System.Drawing.Point(222, 148)
+        Me.GunaAdvenceButton6.Location = New System.Drawing.Point(236, 160)
         Me.GunaAdvenceButton6.Name = "GunaAdvenceButton6"
         Me.GunaAdvenceButton6.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton6.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -1325,7 +1325,7 @@ Partial Class Form1
         Me.GunaAdvenceButton6.OnHoverImage = Nothing
         Me.GunaAdvenceButton6.OnHoverLineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton6.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton6.Size = New System.Drawing.Size(210, 42)
+        Me.GunaAdvenceButton6.Size = New System.Drawing.Size(221, 42)
         Me.GunaAdvenceButton6.TabIndex = 1
         Me.GunaAdvenceButton6.Text = "Modifier votre mail"
         '
@@ -1348,7 +1348,7 @@ Partial Class Form1
         Me.GunaAdvenceButton5.Image = CType(resources.GetObject("GunaAdvenceButton5.Image"), System.Drawing.Image)
         Me.GunaAdvenceButton5.ImageSize = New System.Drawing.Size(20, 20)
         Me.GunaAdvenceButton5.LineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton5.Location = New System.Drawing.Point(9, 148)
+        Me.GunaAdvenceButton5.Location = New System.Drawing.Point(9, 160)
         Me.GunaAdvenceButton5.Name = "GunaAdvenceButton5"
         Me.GunaAdvenceButton5.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton5.OnHoverBorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -1356,7 +1356,7 @@ Partial Class Form1
         Me.GunaAdvenceButton5.OnHoverImage = Nothing
         Me.GunaAdvenceButton5.OnHoverLineColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.GunaAdvenceButton5.OnPressedColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.GunaAdvenceButton5.Size = New System.Drawing.Size(207, 42)
+        Me.GunaAdvenceButton5.Size = New System.Drawing.Size(221, 42)
         Me.GunaAdvenceButton5.TabIndex = 1
         Me.GunaAdvenceButton5.Text = "Modifier votre mots de passe"
         '
